@@ -14,13 +14,11 @@
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
-        $( "#logindiv" ).css( "display", "none" );
     } else {
         // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
-        $( "#logindiv" ).css( "display", "none" );
     }
   }
 
@@ -83,6 +81,5 @@
       
         var meID=response.id;
         console.log(meID);
-        $( "#logindiv" ).css( "display", "block" );
     });
   }
