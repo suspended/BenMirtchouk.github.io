@@ -1,0 +1,34 @@
+.divLeft, .divRight{  
+    background: #D25A1E;
+    min-height: 100px;
+    width: calc(50% - 25px);
+    position: relative;     
+}
+.divLeft {
+    float: left;
+}
+.divRight {
+    float: right;
+}
+.divLeft:after {    
+    position: absolute; top: 0px;
+    content:'';    
+    z-index: -1;
+    height: 100%;
+    width: 50%;
+    background: #D25A1E;
+    right: 0;
+    transform-origin: bottom right;
+    transform: skewX(-20deg);
+}
+.divRight:after {    
+    position: absolute; top: 0px;
+    content:'';    
+    z-index: -1;
+    height: 100%;
+    width: 50%;
+    background: #D25A1E;
+    left: 0;
+    transform-origin: top left;
+    transform: skewX(-20deg);
+}
