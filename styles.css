@@ -36,3 +36,37 @@
     transform-origin: top left;
     transform: skewX(-10deg);
 }
+
+@media (max-width: 630px) {
+.divRight, .divLeft {
+   float: none;
+   width: 76vw;
+   display: block;
+   position: relative;
+   margin: 0 auto;
+   margin-top: 30px;
+   padding: 30px;
+   content: '';
+   -webkit-transform: skewY(-3deg);
+   -moz-transform: skewY(-3deg);
+   -ms-transform: skewY(-3deg);
+   -o-transform: skewY(-3deg);
+   transform: skewY(-3deg);
+   -webkit-backface-visibility: hidden;
+   overflow: visible;
+}
+.divRight:after, .divLeft:after {
+   display: none;
+}
+.divRight h2, .divRight li, .divLeft h2, .divLeft li  {
+   content: '';
+   -webkit-transform: skewY(3deg);
+   -moz-transform: skewY(3deg);
+   -ms-transform: skewY(3deg);
+   -o-transform: skewY(3deg);
+   transform: skewY(3deg);
+   -webkit-backface-visibility: hidden;
+   /* overflow: hidden; */
+}
+
+}
