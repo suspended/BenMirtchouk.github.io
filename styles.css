@@ -1,34 +1,38 @@
 .divLeft, .divRight{  
     background: #D25A1E;
-    min-height: 100px;
-    width: calc(50% - 25px);
+    min-height: calc(100% - 50px);
+    width: calc(50% - 250px);
     position: relative;     
 }
 .divLeft {
     float: left;
+    margin-left: 25px;
+    margin-top: 25px;
 }
 .divRight {
     float: right;
+    margin-right: 25px;
+    margin-top: 25px;
 }
 .divLeft:after {    
     position: absolute; top: 0px;
     content:'';    
     z-index: -1;
     height: 100%;
-    width: 50%;
+    width: 75%;
     background: #D25A1E;
     right: 0;
     transform-origin: bottom right;
-    transform: skewX(-20deg);
+    transform: skewX(-10deg);
 }
 .divRight:after {    
     position: absolute; top: 0px;
     content:'';    
     z-index: -1;
     height: 100%;
-    width: 50%;
+    width: 75%;
     background: #D25A1E;
     left: 0;
     transform-origin: top left;
-    transform: skewX(-20deg);
+    transform: skewX(-10deg);
 }
