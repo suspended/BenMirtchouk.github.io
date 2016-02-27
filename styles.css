@@ -1,7 +1,7 @@
 .divLeft, .divRight{  
     background: #D25A1E;
     min-height: calc(100% - 50px);
-    width: calc(50% - 150px);
+    width: calc(50% - 125px);
     position: relative;     
 }
 .divLeft {
