@@ -1,72 +1,74 @@
-.divLeft, .divRight{  
-    background: #D25A1E;
-    min-height: calc(100% - 50px);
-    width: calc(50% - 125px);
-    position: relative;     
+.divLeft, .divRight{
+  background: #D25A1E;
+  min-height: calc(100% - 50px);
+  width: calc(50% - 125px);
+  position: relative;
 }
 .divLeft {
-    float: left;
-    margin-left: 25px;
-    margin-top: 25px;
+  float: left;
+  margin-left: 25px;
+  margin-top: 25px;
 }
 .divRight {
-    float: right;
-    margin-right: 25px;
-    margin-top: 25px;
+  float: right;
+  margin-right: 25px;
+  margin-top: 25px;
 }
-.divLeft:after {    
-    position: absolute; top: 0px;
-    content:'';    
-    z-index: -1;
-    height: 100%;
-    width: 75%;
-    background: #D25A1E;
-    right: 0;
-    transform-origin: bottom right;
-    transform: skewX(-10deg);
+.divLeft:after {
+  position: absolute;
+  top: 0px;
+  content:'';
+  z-index: -1;
+  height: 100%;
+  width: 75%;
+  background: #D25A1E;
+  right: -40px;
+  transform-origin: bottom right;
+  transform: skewX(-10deg);
 }
-.divRight:after {    
-    position: absolute; top: 0px;
-    content:'';    
-    z-index: -1;
-    height: 100%;
-    width: 75%;
-    background: #D25A1E;
-    left: 0;
-    transform-origin: top left;
-    transform: skewX(-10deg);
+.divRight:after {
+  position: absolute;
+  top: 0px;
+  content:'';
+  z-index: -1;
+  height: 100%;
+  width: 110px;
+  background: #D25A1E;
+  left: 0;
+  transform-origin: top left;
+  transform: skewX(-10deg);
 }
 
 @media (max-width: 630px) {
 .divRight, .divLeft {
-   float: none;
-   width: 76vw;
-   display: block;
-   position: relative;
-   margin: 0 auto;
-   margin-top: 30px;
-   padding: 30px;
-   content: '';
-   -webkit-transform: skewY(-3deg);
-   -moz-transform: skewY(-3deg);
-   -ms-transform: skewY(-3deg);
-   -o-transform: skewY(-3deg);
-   transform: skewY(-3deg);
-   -webkit-backface-visibility: hidden;
-   overflow: visible;
+ float: none;
+ width: 76vw;
+ display: block;
+ position: relative;
+ margin: 0 auto;
+ margin-top: 30px;
+ padding: 30px;
+ content: '';
+ -webkit-transform: skewY(-3deg);
+ -moz-transform: skewY(-3deg);
+ -ms-transform: skewY(-3deg);
+ -o-transform: skewY(-3deg);
+ transform: skewY(-3deg);
+ -webkit-backface-visibility: hidden;
+ overflow: visible;
 }
 .divRight:after, .divLeft:after {
-   display: none;
+ display: none;
 }
 .divRight h2, .divRight li, .divLeft h2, .divLeft li  {
-   content: '';
-   -webkit-transform: skewY(3deg);
-   -moz-transform: skewY(3deg);
-   -ms-transform: skewY(3deg);
-   -o-transform: skewY(3deg);
-   transform: skewY(3deg);
-   -webkit-backface-visibility: hidden;
-   /* overflow: hidden; */
+ content: '';
+ -webkit-transform: skewY(3deg);
+ -moz-transform: skewY(3deg);
+ -ms-transform: skewY(3deg);
+ -o-transform: skewY(3deg);
+ transform: skewY(3deg);
+ -webkit-backface-visibility: hidden;
+ /* overflow: hidden; */
 }
 
 }
