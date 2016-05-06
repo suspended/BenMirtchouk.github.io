@@ -47,13 +47,13 @@
 					counter2=0;
 					setTimeout( blink, 300 );
 				}else{
-					setTimeout( type, 40 );
+					setTimeout( type, 60 );
 				}
 			}
 
 			function blink(){
 				//debugger;
-				if (counter2==4) setTimeout( type, 40 );
+				if (counter2==4) setTimeout( type, 60 );
 				else{
 					if (counter2%2==0) document.getElementById("cursor").innerHTML="";
 					else document.getElementById("cursor").innerHTML="<strong>_</strong>";
