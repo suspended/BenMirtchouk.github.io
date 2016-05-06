@@ -1,0 +1,15 @@
+.text{
+	padding-top: 1vw;
+	padding-left: 1vw;
+	color: #00FF00;
+	float: left;
+}
+.cursor{
+	padding-left: 0;
+}
+.UbuntuFont{
+	font-family: Ubuntu;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}
