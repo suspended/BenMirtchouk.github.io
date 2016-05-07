@@ -10,15 +10,15 @@ body{
 	padding-left: 0;
 	float: left;
 }
-.UbuntuFont{
+.UbuntuFont, #input{
 	font-family: Ubuntu;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
 	margin: 0;
+	font-size: 16px;
 }
 .input{
-	padding-top: 5px;
 	color: #00FF00;
 	text-shadow: 0 0 0 #00FF00;
 	border: none;
