@@ -4,12 +4,12 @@ function start(){
 	type();
 }
 
-var data="Hi, I'm Ben Mirtchouk! Nice to meet you!EOF.";
+var data="Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n): EOF.";
 
 var sentences=[];
 for (k=0;k<data.length;k++){
 	var letter=data.substring(k,k+1);
-	if (letter=="." || letter=="?" || letter=="!"){
+	if (letter=="." || letter=="?" || letter=="!" || letter==":"){
 		if (data.substring(0,k+1)=="EOF.") sentences.push("");
 		else sentences.push(data.substring(0,k+1));
 		data=data.substring(k+1,data.length);
