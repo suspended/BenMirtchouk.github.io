@@ -19,6 +19,7 @@ body{
 	font-size: 16px;
 }
 .input{
+	overflow: hidden;
 	color: #00FF00;
 	text-shadow: 0 0 0 #00FF00;
 	border: none;
