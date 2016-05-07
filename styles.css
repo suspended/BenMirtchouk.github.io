@@ -26,6 +26,7 @@ body{
 	background-color : #000000;
 	color: transparent;
 	position: relative;
-	top: -1.5px;
+	top: 0;
 	float: left;
+	padding-left: 4px;
 }
