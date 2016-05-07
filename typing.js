@@ -1,3 +1,4 @@
+started=false;
 function typeString(data){
 	sentences=[];
 	for (k=0;k<data.length;k++){
@@ -12,15 +13,17 @@ function typeString(data){
 
 	sentenceCount=0;
 	letterCount=0;
-	counter2=0;
-	infiniteCount=0;
+	counter2=true;
+	infiniteCount=true;
 
 	start();
 }
 
 function start(){
+	if (!started) infBlink();
 	refocus();
 	type();
+	started=true;
 }
 
 
@@ -28,10 +31,8 @@ function start(){
 
 function type(){
 	if (sentenceCount==sentences.length) return;
-	if (sentences[sentenceCount]==""){
-		infBlink();
-		return;
-	}
+	if (sentences[sentenceCount]=="") return;
+
 
 	document.getElementById("text").innerHTML+=sentences[sentenceCount].substring(letterCount,letterCount+1);
 
@@ -39,27 +40,24 @@ function type(){
 	if (letterCount==sentences[sentenceCount].length){
 		letterCount=0;
 		sentenceCount++;
-		counter2=0;
-		setTimeout( blink, 200 );
+		counter2=true;
+		setTimeout( wait, 200 );
 	}else{
 		setTimeout( type, 60 );
 	}
 }
 
-function blink(){
-	//debugger;
-	if (counter2==4) setTimeout( type, 60 );
+function wait(){
+	if (!counter2) setTimeout( type, 60 );
 	else{
-		if (counter2%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
-		else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
-		counter2++;
-		setTimeout( blink, 200 );
+		setTimeout( wait, 800 );
+		counter2=false;
 	}
 }
 
 function infBlink(){
-	if (infiniteCount%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
+	if (infiniteCount) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
 	else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
-	infiniteCount++;
+	infiniteCount=!infiniteCount;
 	setTimeout( infBlink, 200 );
 }
