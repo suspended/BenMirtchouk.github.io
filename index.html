@@ -2,12 +2,15 @@
 	<head>
 		<title>Ben Mirtchouk</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="typing.js"></script>
-        <script src="focus.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
+
+        <script src="typing.js"></script>
+        <script src="focus.js"></script>
+        <script src="enter.js"></script>
+
 	</head>
 
 	<body bgcolor="#000000">
@@ -15,7 +18,8 @@
 		<p id="text" class="text UbuntuFont"></p>
 		<!--<input id="input" type="text" class="input" onblur="refocus()"></input>-->
 		<span id="input" type="text" class="input" onblur="refocus()" contenteditable="true"></span>
-		<<p id="cursor" class="text cursor UbuntuFont" contenteditable="true"><strong>_</strong></p>
+		
+		<p id="cursor" class="text cursor UbuntuFont"><strong>_</strong></p>
 
 
 	</body>
