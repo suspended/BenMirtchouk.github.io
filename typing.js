@@ -59,5 +59,5 @@ function infBlink(){
 	if (infiniteCount) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
 	else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
 	infiniteCount=!infiniteCount;
-	setTimeout( infBlink, 200 );
+	setTimeout( infBlink, 300 );
 }
