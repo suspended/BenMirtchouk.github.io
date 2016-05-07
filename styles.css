@@ -25,4 +25,6 @@ body{
 	outline: none;
 	background-color : #000000;
 	color: transparent;
+	position: relative;
+	top: -1.5px;
 }
