@@ -5,11 +5,18 @@ $( document ).ready(function() {
      switch(activeQuestion){
      	  case 0:
           if (document.getElementById('input').innerHTML.startsWith("y")){
-            document.getElementById('text').innerHTML+=document.getElementById('input').innerHTML;
+            document.getElementById('text').innerHTML+=" "+document.getElementById('input').innerHTML;
             document.getElementById('text').id="oldText";
             document.getElementById('texts').innerHTML+='<br>';
             document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
             typeString("Good Choice.");
+            activeQuestion++;
+          }else{
+            document.getElementById('text').innerHTML+=" "+document.getElementById('input').innerHTML;
+            document.getElementById('text').id="oldText";
+            document.getElementById('texts').innerHTML+='<br>';
+            document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
+            typeString("Hmm, that's a shame.");
             activeQuestion++;
           }
           break;
