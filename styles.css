@@ -8,7 +8,7 @@ body{
 }
 .cursor{
 	padding-left: 0;
-	float: left;
+	float:left
 }
 .UbuntuFont, #input{
 	font-family: Ubuntu;
@@ -27,4 +27,5 @@ body{
 	color: transparent;
 	position: relative;
 	top: -1.5px;
+	float: left;
 }
