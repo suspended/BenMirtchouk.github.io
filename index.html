@@ -15,13 +15,20 @@
 
 	<body bgcolor="#000000">
 
-		<p id="text" class="text UbuntuFont"></p>
+		<div id="texts">
+			<p id="text" class="text UbuntuFont"></p>
+		</div>
 		<!--<input id="input" type="text" class="input" onblur="refocus()"></input>-->
-		<span id="input" type="text" class="input" onblur="refocus()" contenteditable="true"></span>
 		
+		<span id="input" type="text" class="input" onblur="refocus()" contenteditable="true"></span>
+
 		<p id="cursor" class="text cursor UbuntuFont"><strong>_</strong></p>
 
 
 	</body>
+
+	<script>
+		window.onload=typeString("Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.");
+	</script>
 
 </html>

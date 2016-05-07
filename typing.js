@@ -1,27 +1,30 @@
-window.onload=start;
+function typeString(data){
+	sentences=[];
+	for (k=0;k<data.length;k++){
+		var letter=data.substring(k,k+1);
+		if (letter=="." || letter=="?" || letter=="!" || letter==":"){
+			if (data.substring(0,k+1)=="EOF.") sentences.push("");
+			else sentences.push(data.substring(0,k+1));
+			data=data.substring(k+1,data.length);
+			k=-1;
+		}
+	}
+
+	sentenceCount=0;
+	letterCount=0;
+	counter2=0;
+	infiniteCount=0;
+
+	start();
+}
+
 function start(){
 	refocus();
 	type();
 }
 
-var data="Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.";
-
-var sentences=[];
-for (k=0;k<data.length;k++){
-	var letter=data.substring(k,k+1);
-	if (letter=="." || letter=="?" || letter=="!" || letter==":"){
-		if (data.substring(0,k+1)=="EOF.") sentences.push("");
-		else sentences.push(data.substring(0,k+1));
-		data=data.substring(k+1,data.length);
-		k=-1;
-	}
-}
 
 
-var sentenceCount=0;
-var letterCount=0;
-var counter2=0;
-var infiniteCount=0;
 
 function type(){
 	if (sentenceCount==sentences.length) return;
@@ -37,7 +40,7 @@ function type(){
 		letterCount=0;
 		sentenceCount++;
 		counter2=0;
-		setTimeout( blink, 300 );
+		setTimeout( blink, 200 );
 	}else{
 		setTimeout( type, 60 );
 	}
@@ -50,7 +53,7 @@ function blink(){
 		if (counter2%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
 		else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
 		counter2++;
-		setTimeout( blink, 300 );
+		setTimeout( blink, 200 );
 	}
 }
 
@@ -58,5 +61,5 @@ function infBlink(){
 	if (infiniteCount%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
 	else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
 	infiniteCount++;
-	setTimeout( infBlink, 300 );
+	setTimeout( infBlink, 200 );
 }
