@@ -44,16 +44,16 @@ function blink(){
 	//debugger;
 	if (counter2==4) setTimeout( type, 60 );
 	else{
-		if (counter2%2==0) document.getElementById("cursor").innerHTML="";
-		else document.getElementById("cursor").innerHTML="<strong>_</strong>";
+		if (counter2%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
+		else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
 		counter2++;
 		setTimeout( blink, 300 );
 	}
 }
 
 function infBlink(){
-	if (infiniteCount%2==0) document.getElementById("cursor").innerHTML="";
-	else document.getElementById("cursor").innerHTML="<strong>_</strong>";
+	if (infiniteCount%2==0) document.getElementById("cursor").innerHTML="<strong style='color: black'>_</strong>";
+	else document.getElementById("cursor").innerHTML="<strong style='color: #00FF00'>_</strong>";
 	infiniteCount++;
 	setTimeout( infBlink, 300 );
 }
