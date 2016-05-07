@@ -4,7 +4,7 @@ $( document ).ready(function() {
     console.log("1");
      switch(activeQuestion){
      	  case 0:
-          if (document.getElementById('input').innerHTML.startsWith("y")){
+          if (document.getElementById('input').innerHTML.toLowerCase().startsWith("y")){
             document.getElementById('text').innerHTML+=" "+document.getElementById('input').innerHTML;
             document.getElementById('text').id="oldText";
             document.getElementById('texts').innerHTML+='<br>';
