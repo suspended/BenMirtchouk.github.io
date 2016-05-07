@@ -1,15 +1,27 @@
-.text{
+body{
 	padding-top: 1vw;
 	padding-left: 1vw;
+}
+.text{
 	color: #00FF00;
 	float: left;
 }
 .cursor{
 	padding-left: 0;
+	float: left;
 }
 .UbuntuFont{
 	font-family: Ubuntu;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
+}
+.input{
+	padding-top: 1vw;
+	color: #00FF00;
+	text-shadow: 0 0 0 #00FF00;
+	border: none;
+	outline: none;
+	background-color : #000000;
+	color: transparent;
 }
