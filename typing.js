@@ -4,7 +4,7 @@ function start(){
 	type();
 }
 
-var data="Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n): EOF.";
+var data="Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.";
 
 var sentences=[];
 for (k=0;k<data.length;k++){
