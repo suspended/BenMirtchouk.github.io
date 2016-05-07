@@ -1,4 +1,4 @@
-window.onload=refocus;
+window.onload=type;
 
 
 var data="Hi, I'm Ben Mirtchouk! Nice to meet you!EOF.";
