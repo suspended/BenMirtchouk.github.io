@@ -1,5 +1,8 @@
-window.onload=type;
-
+window.onload=start;
+function start(){
+	refocus();
+	type();
+}
 
 var data="Hi, I'm Ben Mirtchouk! Nice to meet you!EOF.";
 
