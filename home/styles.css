@@ -8,6 +8,7 @@
 }
 
 body{
+    font-family: Lato;
 	margin: 0;
 }
 
@@ -85,7 +86,7 @@ body{
 	right: 0;
 	font-size: 16px;
 	background: #ADB1B9;
-	width: 380px;
+	width: 411px;
 	z-index: 999;
 	line-height: 0.5;
 	border-radius: 20px;
