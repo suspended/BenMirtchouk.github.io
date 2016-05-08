@@ -9,7 +9,7 @@ $( document ).ready(function() {
             document.getElementById('text').id="oldText";
             document.getElementById('texts').innerHTML+='<br>';
             document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
-            typeString("Good Choice.");
+            typeString("Good Choice, press enter to continue.");
             activeQuestion++;
           }else{
             document.getElementById('text').innerHTML+=" "+document.getElementById('input').innerHTML;
@@ -21,6 +21,7 @@ $( document ).ready(function() {
           }
           break;
         case 1:
+          window.location = "/home";
           break;
 
      	
