@@ -26,8 +26,8 @@ $( document ).ready(function() {
           if (answer1==1)
             window.location = "/home";
           else
-            var ww = window.open(window.location, '_self'); 
-            ww.close();
+            debugger;
+            document.getElementById('text').className+=" hinge";
           break;
 
      	
