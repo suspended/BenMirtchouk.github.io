@@ -45,16 +45,16 @@ function type(){
 		letterCount=0;
 		sentenceCount++;
 		counter2=true;
-		setTimeout( wait, 200 );
+		setTimeout( wait, 100 );
 	}else{
-		setTimeout( type, 60 );
+		setTimeout( type, 30 );
 	}
 }
 
 function wait(){
-	if (!counter2) setTimeout( type, 60 );
+	if (!counter2) setTimeout( type, 30 );
 	else{
-		setTimeout( wait, 800 );
+		setTimeout( wait, 400 );
 		counter2=false;
 	}
 }
