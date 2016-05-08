@@ -26,8 +26,8 @@ $( document ).ready(function() {
           if (answer1==1)
             window.location = "/home";
           else
-            debugger;
-            document.getElementById('text').className+=" hinge";
+            document.getElementById('oldText').className+=" hinge animated";
+            document.getElementById('text').className+=" hinge animated";
           break;
 
      	
