@@ -1,4 +1,6 @@
 answer1=0;
+stepCount=0;
+
 $( document ).ready(function() {
   var activeQuestion=0;
   $('span').bind("enterKey",function(e){
@@ -10,7 +12,7 @@ $( document ).ready(function() {
             document.getElementById('text').id="oldText";
             document.getElementById('texts').innerHTML+='<br>';
             document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
-            typeString("Good Choice, press enter to continue.");
+            typeString("Good Choice, press enter to continue.EOF.");
             answer1++;
             activeQuestion++;
           }else{
@@ -18,7 +20,7 @@ $( document ).ready(function() {
             document.getElementById('text').id="oldText";
             document.getElementById('texts').innerHTML+='<br>';
             document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
-            typeString("Hmm, that's a shame.");
+            typeString("Hmm, that's a shame.EOF.");
             activeQuestion++;
           }
           break;
@@ -27,7 +29,7 @@ $( document ).ready(function() {
             window.location = "/home";
           else
             document.getElementById('oldText').className+=" hinge animated";
-            document.getElementById('text').className+=" hinge animated";
+            setTimeout( step, 2000 );
           break;
 
      	
@@ -40,3 +42,15 @@ $( document ).ready(function() {
       }
   });
 });
+
+function step(){
+  if (stepCount==0){
+    document.getElementById('text').className+=" hinge animated";
+    stepCount++;
+    setTimeout( step, 2000 );
+  }else{
+    window.location = "/end.html";
+  }
+}
+
+

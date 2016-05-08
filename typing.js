@@ -30,10 +30,7 @@ function start(){
 
 
 function type(){
-	if (sentenceCount==sentences.length)
-		return;	
-	
-	if (sentences[sentenceCount]==""){
+	if (sentenceCount==sentences.length || sentences[sentenceCount]==""){
 		document.getElementById("noType").value=0;
 		refocus();
 		return;
