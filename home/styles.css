@@ -74,3 +74,8 @@ body{
 .BenMirt:hover {
 	color: #BFDEF9;
 }
+.name{
+	display: none;
+	position: relative;
+	top: 100px;
+}
