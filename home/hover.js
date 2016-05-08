@@ -1,9 +1,9 @@
 function onhover(){
 	$("#BenMirt").hover(
 		function() {
-			$( this ).addClass("shake animated");
+			$( this ).addClass("pulse animated");
 		}, function() {
-			$( this ).removeClass("shake animated");
+			$( this ).removeClass("pulse animated");
 		}
 	);
 }
