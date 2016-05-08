@@ -1,3 +1,4 @@
+answer1=0;
 $( document ).ready(function() {
   var activeQuestion=0;
   $('span').bind("enterKey",function(e){
@@ -10,6 +11,7 @@ $( document ).ready(function() {
             document.getElementById('texts').innerHTML+='<br>';
             document.getElementById('texts').innerHTML+='<p id="text" class="text UbuntuFont"></p>';
             typeString("Good Choice, press enter to continue.");
+            answer1++;
             activeQuestion++;
           }else{
             document.getElementById('text').innerHTML+=" "+document.getElementById('input').innerHTML;
@@ -21,7 +23,11 @@ $( document ).ready(function() {
           }
           break;
         case 1:
-          window.location = "/home";
+          if (answer1==1)
+            window.location = "/home";
+          else
+            var ww = window.open(window.location, '_self'); 
+            ww.close();
           break;
 
      	
