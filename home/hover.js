@@ -4,9 +4,13 @@ function onhover(){
 		function() {
 			$( this ).addClass("pulse animated");
 			$(".name").css("display","block");
+			$( ".name" ).removeClass("zoomOut");
+			$( ".name" ).addClass("zoomIn");
+			startBlink();
 		}, function() {
 			$( this ).removeClass("pulse animated");
-			$(".name").css("display","none");
+			$( ".name" ).removeClass("zoomIn");
+			$( ".name" ).addClass("zoomOut");
 		}
 	);
 }
