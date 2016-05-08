@@ -30,14 +30,16 @@ function start(){
 
 
 function type(){
-	if (sentenceCount==sentences.length){
-		document.getElementById("noType").value=0;
+	if (sentenceCount==sentences.length)
 		return;	
+	
+	if (sentences[sentenceCount]==""){
+		document.getElementById("noType").value=0;
+		refocus();
+		return;
 	}else{
 		document.getElementById("noType").value=1;
 	}
-	if (sentences[sentenceCount]=="") return;
-
 
 	document.getElementById("text").innerHTML+=sentences[sentenceCount].substring(letterCount,letterCount+1);
 
