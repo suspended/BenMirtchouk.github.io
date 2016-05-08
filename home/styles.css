@@ -1,18 +1,35 @@
 .left{
 	background: #FF0000;
-	display: inline;
-	margin-left: 2.5%;
-	position: relative;
-	top: 3%;
-	padding-right: 45%;
-	padding-bottom: 45%;
+	display: inline-block;
+	width: 45%;
+	height: 100%;
+	margin-left: 4%; 
+
+	webkit-transform: skewY(-5deg);
+    -moz-transform: skewY(-5deg);
+    -ms-transform: skewY(-5deg);
+    -o-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+
 }
 .right{
 	background: #0000FF;
-	display: inline;
-	margin-left: 2.5%;
+	display: inline-block;
+	width: 45%;
 	position: relative;
-	top: 3%;
-	padding-left: 45%;
-	padding-bottom: 45%;
+	top: 0;
+	vertical-align: top;
+	height: 100%;
+	margin-left: 2%;
+
+	webkit-transform: skewY(-5deg);
+    -moz-transform: skewY(-5deg);
+    -ms-transform: skewY(-5deg);
+    -o-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+}
+
+#eatabagofcancer {
+	height: 500px;
+	width: 100%;
 }
