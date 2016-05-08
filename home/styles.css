@@ -1,0 +1,16 @@
+.left{
+	background: #FF0000;
+	display: inline;
+	margin-left: 2.5%;
+	margin-top: 100px;
+	padding-right: 45%;
+	padding-bottom: 45%;
+}
+.right{
+	background: #0000FF;
+	display: inline;
+	margin-left: 2.5%;
+	margin-top: 100px;
+	padding-left: 45%;
+	padding-bottom: 45%;
+}

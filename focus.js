@@ -1,3 +1,7 @@
 function refocus(){
-	document.getElementById("input").focus();
+	if (document.getElementById("noType").value==0)
+		document.getElementById("input").focus();
+}
+function unfocus(){
+	document.getElementById("noType").focus();
 }
