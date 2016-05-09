@@ -1,0 +1,160 @@
+@font-face {
+	font-family: Multicore;
+	src: url(fonts/Multicore.otf);
+}
+
+@font-face {
+	font-family: Hamster;
+	src: url(fonts/Debby.otf);
+}
+
+@font-face {
+	font-family: Plantin;
+	src: url(fonts/Plantin-Std.ttf);
+}
+
+.sub {
+	font-family: Plantin;
+	color:#fa9732;
+
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	/*background-color: #CDCFFF;*/
+	background-color: black;
+}
+
+.f {
+	color: yellow;
+}
+.top {
+	text-align: center;
+	height: 100%;
+
+}
+
+.mushu {
+	font-family: Plantin;
+	height: 5px;
+}
+
+.reminder {
+	position: fixed;
+	display: block;
+	margin-top: 250px;
+	margin-left: 2%;
+	height: 90px;
+	width: 180px;
+	background-color: yellow;
+}
+.name {
+	font-family: Hamster;
+	height: 100px;
+	color: white;
+	letter-spacing: 8px;
+	font-size: 10em;
+}
+
+.sub {
+	font-family: Plantin;
+
+}
+
+/*iframe {
+	margin: 0;
+	padding: 0;
+
+}*/
+
+.parallax-window {
+    min-height: 700px;
+    background: transparent;
+}
+
+.sec2 {
+	border: 5px solid black;
+	height: 65%;
+	background-color: black;
+}
+
+.rap {
+	padding-top: 5%;
+	width: 45%;
+	margin: 0 auto;
+}
+
+.pt1 {
+	font-family: Plantin;
+	/*color: #CDCFFF;*/
+	color: #6b9abf;
+	font-size: 30px;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+.pt2 {
+	font-family: Plantin;
+	color: #ffd700;
+	font-size: 30px;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+.pt3 {
+	font-family: Plantin;
+	color: #969696;
+	font-size: 30px;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+.pt4 {
+	font-family: Plantin;
+	color: #e1f7d5;
+	font-size: 30px;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+.pt6 {
+	font-family: Plantin;
+	color: #ffbdbd;
+	font-size: 30px;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+
+.wrapper {
+  margin-top: 4%;
+  text-align: center;
+}
+
+.wrapper2 {
+  /*margin-top: 4%;*/
+  margin-bottom: 30%;
+  text-align: center;
+}
+
+.submit {
+
+  font-family:  Plantin, arial;
+  font-size: 15px;
+  width: 120px;
+  display: inline-block;
+  height: 50px;
+  color: black;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  /*background: #DD3F0F;*/
+  background: white;
+  border: 0;
+  /*border-top: 0.6px solid #DD3F0F;*/
+  font-weight: bold;
+  /*border-bottom: 2px solid #c6380d;*/
+  cursor: pointer;
+}

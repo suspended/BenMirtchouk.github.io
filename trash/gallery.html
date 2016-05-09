@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <!-- Enable responsive view on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>gallery !!</title>
+  <link rel="stylesheet" type="text/css" href="gallery.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="parallax.js-1.4.2/parallax.js"></script>
+  <!-- Enable media queries for old IE -->
+  <!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="no-touch">
+
+  <audio controls autoplay>
+    <source src="lisa.mp3" type="audio/mpeg">
+  </audio>
+  <h3 class="find">*find the easter egg</h3>
+  <div class="wrap">
+    
+    <!-- Define all of the tiles: -->
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/1.png" />
+        <div class="titleBox">i</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/2.PNG" />
+        <div class="titleBox">really</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/3.JPG" />
+        <div class="titleBox">really</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/4.JPG" />
+        <div class="titleBox">really</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/5.JPG" />
+        <div class="titleBox"></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/6.JPG" />
+        <div class="titleBox">really</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/7.JPG" />
+        <div class="titleBox">want</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/8.PNG"/>
+        <div class="titleBox">toasted</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/9.JPG" />
+        <div class="titleBox">croissants</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/10.PNG" />
+        <div class="titleBox">with</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/11.JPG" />
+        <div class="titleBox">turkey</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxInner">
+        <img src="images/al/12.JPG" />
+        <div class="titleBox">!!<\3!!</div>
+      </div>
+    </div>
+
+   <div class="outer"> 
+    <div class="vid">
+    <video width="400px" controls>
+        <source src="images/al/8.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+
+
+
+    
+    
+  </div>
+  <!-- /#wrap -->
+  
+  <!-- Add some JavaScript to enable toggling the descriptions when an image is tapped on a touchscreen device -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      // See if this is a touch device
+      if ('ontouchstart' in window)
+      {
+        // Set the correct body class
+        $('body').removeClass('no-touch').addClass('touch');
+        
+        // Add the touch toggle to show text
+        $('div.boxInner img').click(function(){
+          $(this).closest('.boxInner').toggleClass('touchFocus');
+        });
+      }
+    });
+  </script>
+
+  
+  
+</body>
+</html>
