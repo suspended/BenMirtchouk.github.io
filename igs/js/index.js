@@ -3,10 +3,10 @@
 
 var date=new Date();
 
-var igs=new Date(date.getFullYear(),date.getMonth(),date.getDate(),6,56,0,0);
+var igs=new Date(date.getFullYear(),date.getMonth(),date.getDate(),7,56,0,0);
 
 if (date.getTime()>igs.getTime()){
-	igs=new Date(date.getFullYear(),date.getMonth(),date.getDate()+1,6,56,0,0);
+	igs=new Date(date.getFullYear(),date.getMonth(),date.getDate()+1,7,56,0,0);
 }
 
 var defaults = {
