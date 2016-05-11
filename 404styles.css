@@ -1,0 +1,15 @@
+body{
+	margin-top: 24vh;
+}
+
+.UbuntuFont{
+    background: #B7B7BD;
+	text-align: center;
+	line-height: 1.2;
+	font-family: Ubuntu;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 300;
+	font-size: 16px;
+	height: 18px;
+}
