@@ -1,5 +1,5 @@
-body{
-	margin-top: 24vh;
+.main{
+	margin-top: 16vh;
 }
 
 .UbuntuFont{
@@ -15,4 +15,9 @@ body{
 
 a{
 	color: blue;
+}
+
+.big{
+	margin-top: 10vh;
+	font-size: 48px;
 }
