@@ -9,6 +9,12 @@ function typeString(data){
 			data=data.substring(k+1,data.length);
 			k=-1;
 		}
+		if (letter=="@"){
+			if (data.substring(0,k+1)=="EOF.") sentences.push("");
+			else sentences.push(data.substring(0,k));
+			data=data.substring(k+1,data.length);
+			k=-1;
+		}
 	}
 
 	sentenceCount=0;
