@@ -185,3 +185,14 @@ div.contact{
         height: 175px;
     }
 }
+
+@media screen and (max-width: 540px){
+    #me{
+        padding: 70px 0px;
+    }
+
+    #BenMirt{
+        font-size: 10vw;
+        width: 70vw;
+    }
+}
