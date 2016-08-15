@@ -12,42 +12,35 @@ body{
     margin: 0;
 }
 
-#container {
-    background: #130838;
-}
-
 .left {
     background: #ECECEC;
-    / margin-left: 4%; /
+    margin-left: 4%; 
+}
+
+.left,.right {
     webkit-transform: skewY(-5deg);
     -moz-transform: skewY(-5deg);
     -ms-transform: skewY(-5deg);
     -o-transform: skewY(-5deg);
     transform: skewY(-5deg);
-}
-
-.left,.right {
     display: inline-block;
-    width: 42%;
-    height: 78%;
+    width: calc(50% - 210px);
     border: 8px solid #BFBBBB;
-    padding: 20px;
+    padding: 82px;
     position: relative;
     top: 30px;
+    margin: 0;
+    height: auto;
+    min-height: 81%;
+
 }
 
 .right {
     background: #717171;
     position: relative;
     vertical-align: top;
-    margin-left: 2%;
-    webkit-transform: skewY(-5deg);
-    -moz-transform: skewY(-5deg);
-    -ms-transform: skewY(-5deg);
-    -o-transform: skewY(-5deg);
     color: #fff;
     border-color: #585858;
-    transform: skewY(-5deg);
     float: right;
 }
 
@@ -63,15 +56,13 @@ body{
     transform: skewY(5deg);
 }
 
-#container {
-    height: 600px;
-    width: 94vw;
-    padding: 3vw;
-    padding-top: 68px;
+#center ul{
+    list-style-type: none;
 }
 
-#title {
+.title {
     text-align: center;
+    font-size: 48px;
 }
 
 .BenMirt:hover {
@@ -93,13 +84,104 @@ body{
     border-radius: 20px;
 }
 
-div#center {
-    width: 98%;
+#center {
     margin: 0 auto;
+    height: auto;
+    padding: 3vw;
+    padding-top: 68px;
+    font-size: 21px;
 }
 
-h1#BenMirt {
+#container, .bottom{
+    background: #130838;
+}
+
+.bottom{
+    height: 48px;
+}
+
+#BenMirt {
     width: 401px;
     display: block;
     margin: 0 auto;
+}
+
+#center li{
+    margin-bottom: 8px;
+}
+
+#footer{
+    background: #0aa59f;
+    height: 100px;
+}
+
+h1.contact {
+    margin: 0;
+    padding-top: 28px;
+    float: right;
+    margin-right: 19%;
+}
+
+div.contact{
+    width: 50%;
+    float: left;
+    display: inline-block;
+    position: relative;
+}
+
+.imgs{
+    position: absolute;
+    left: 19%;
+    top: 12.5px;
+}
+
+.contact img{
+    height: 75px;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+@media screen and (max-width: 1295px){
+    .left, .right{
+        padding: 30px;
+        width: calc(50% - 97px);
+    }
+}
+
+@media screen and (max-width: 875px){
+    .left, .right{
+        margin: 0 auto;
+        display: block;
+        float: none;
+        width: 70%;
+        min-height: 0px;
+    }
+
+    .right{
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    div.contact{
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+
+    h1.contact{
+        float: none;
+        margin-right: 0;
+    }
+
+    .imgs{
+        position: inherit;
+        left: 0;
+        top: 0;
+        margin-top: 12.5px;
+    }
+
+    #footer{
+        height: 175px;
+    }
 }
