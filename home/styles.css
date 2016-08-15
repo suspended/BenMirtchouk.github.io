@@ -195,4 +195,15 @@ div.contact{
         font-size: 10vw;
         width: 70vw;
     }
+
+    #name{
+        display: block;
+        width: 70vw;
+        height: 118px;
+    }
+
+    #name h2{
+        height: 35px;
+        line-height: 25px;
+    }
 }
