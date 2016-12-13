@@ -27,7 +27,7 @@ function start(){
 		mpeople2=[];
 
 		//convo=doc.firstChild.children[1].children[1].children[1].children[0]; //I1
-		convo=doc.firstChild.children[1].children[1].children[4].children[23]; //M1
+		convo=doc.firstChild.children[1].children[1].children[1].children[0]; //M1
 		var convoText=convo.innerHTML;
 		people=convoText.substr(0,convoText.indexOf('<'));
 		people=people.split(',');
