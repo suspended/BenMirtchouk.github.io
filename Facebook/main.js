@@ -26,8 +26,7 @@ function start(){
 		mpeople=[];
 		mpeople2=[];
 
-		//convo=doc.firstChild.children[1].children[1].children[1].children[0]; //I1
-		convo=doc.firstChild.children[1].children[1].children[1].children[0]; //M1
+		convo=doc.firstChild.children[1].children[1].children[4].children[23];
 		var convoText=convo.innerHTML;
 		people=convoText.substr(0,convoText.indexOf('<'));
 		people=people.split(',');
@@ -49,9 +48,10 @@ function start(){
 			var time=convo.children[i].firstChild.children[1].innerHTML;
 			time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
 			mpeople[speaker]++;
+			mpeople2[speaker]++;
 			if (new Date(time).toString()==toPush.x.toString()){
 				toPush.y=mpeople[people[0]] + mpeople[people[1]];
-				toPush2.y=mpeople[people[0]] + mpeople[people[1]];
+				toPush2.y=mpeople2[people[0]] + mpeople2[people[1]];
 			}else{
 				messages[0].push(toPush);
 				messages[1].push(toPush2);
@@ -64,30 +64,6 @@ function start(){
 			}
 		}
 		log("gathered messages");
-
-		// convo=doc.firstChild.children[1].children[1].children[2].children[2]; //I2
-		// var convoText=convo.innerHTML;
-		// people=convoText.substr(0,convoText.indexOf('<'));
-		// people=people.split(',');
-		// people[1]=people[1].substr(1);
-
-		// time=convo.children[convo.children.length-(convo.children.length%2==0 ? 2:1)].firstChild.children[1].innerHTML;
-		// time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
-		// var toPush={x: new Date(time), y: 0 };
-		// for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
-		// 	var speaker=convo.children[i].firstChild.firstChild.innerHTML;
-		// 	var time=convo.children[i].firstChild.children[1].innerHTML;
-		// 	time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
-		// 	mpeople[speaker]++;
-		// 	if (new Date(time).toString()==toPush.x.toString()){
-		// 		toPush.y=mpeople[people[0]] + mpeople[people[1]];
-		// 	}else{
-		// 		messages[0].push(toPush);
-		// 		toPush={x: new Date(time), y: mpeople[people[0]] + mpeople[people[1]]};
-		// 	}
-		// }
-		// log("gathered messages");
-
 		
 		drawGraph();
 	});
@@ -118,26 +94,27 @@ function drawGraph(){
 	var ctx = $(".messages");
 
 	var graphsData={
-		title: {
-			text: 'conversation between '+people[0]+' and '+people[1]
-	    },
 	    type: 'line',
 	    data: {
+			title: {
+				text: 'conversation between '+people[0]+' and '+people[1]
+		    },
 			datasets: [
 				{
-					label: 'cummulative',	    
+					label: 'cumulative',	    
 					type: 'line',
 					data: messages[1],
-					fillColor: 'rgba(255, 206, 86, 1)'
+					backgroundColor: 'rgba(1,212,255,.1)',
+		            borderColor: 'rgba(1,212,255,.5)'
+				},
+				{
+					label: 'per day',	    
+					type: 'line',
+					data: messages[0],
+					backgroundColor: 'rgba(1,212,255,.1)',
+		            borderColor: 'rgba(1,212,255,.5)',
+		            lineTension: 0
 				}
-				// ,
-				// {
-				// 	label: 'per day',
-	   // 				 type: 'line',
-				// 	data: messages[0],
-				// 	fillColor 'rgba(255,99,132,1)'
-	            	
-				// }
 				
 			]
 		},
@@ -168,5 +145,6 @@ function drawGraph(){
 	        }
 	    }
 	};
+	console.log(graphsData);
 	var myChart = new Chart(ctx, graphsData);
 }
