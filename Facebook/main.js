@@ -23,35 +23,70 @@ function start(){
 		doc = parser.parseFromString(string, "text/html");
 		log("parsed file");
 
-		convo=doc.firstChild.children[1].children[1].children[1].children[0];
+		mpeople=[];
+		mpeople2=[];
+
+		//convo=doc.firstChild.children[1].children[1].children[1].children[0]; //I1
+		convo=doc.firstChild.children[1].children[1].children[4].children[23]; //M1
 		var convoText=convo.innerHTML;
 		people=convoText.substr(0,convoText.indexOf('<'));
 		people=people.split(',');
 		people[1]=people[1].substr(1);
 		log("found people");
 
-		mpeople=[];
 		mpeople[people[0]]=0;
 		mpeople[people[1]]=0;
+		mpeople2[people[0]]=0;
+		mpeople2[people[1]]=0;
 
 		time=convo.children[convo.children.length-(convo.children.length%2==0 ? 2:1)].firstChild.children[1].innerHTML;
 		time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
-		var toPush={x: new Date(time), y: 0 };
+		var toPush={x: new Date(time), y: 1 };
+		var toPush2={x: new Date(time), y: 1 };
 		for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
+
 			var speaker=convo.children[i].firstChild.firstChild.innerHTML;
 			var time=convo.children[i].firstChild.children[1].innerHTML;
 			time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
 			mpeople[speaker]++;
 			if (new Date(time).toString()==toPush.x.toString()){
 				toPush.y=mpeople[people[0]] + mpeople[people[1]];
+				toPush2.y=mpeople[people[0]] + mpeople[people[1]];
 			}else{
 				messages[0].push(toPush);
+				messages[1].push(toPush2);
+				
+				mpeople[people[0]]=0;
+				mpeople[people[1]]=0;
 				toPush={x: new Date(time), y: mpeople[people[0]] + mpeople[people[1]]};
+				
+				toPush2={x: new Date(time), y: mpeople2[people[0]] + mpeople2[people[1]]};
 			}
 		}
 		log("gathered messages");
 
+		// convo=doc.firstChild.children[1].children[1].children[2].children[2]; //I2
+		// var convoText=convo.innerHTML;
+		// people=convoText.substr(0,convoText.indexOf('<'));
+		// people=people.split(',');
+		// people[1]=people[1].substr(1);
 
+		// time=convo.children[convo.children.length-(convo.children.length%2==0 ? 2:1)].firstChild.children[1].innerHTML;
+		// time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
+		// var toPush={x: new Date(time), y: 0 };
+		// for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
+		// 	var speaker=convo.children[i].firstChild.firstChild.innerHTML;
+		// 	var time=convo.children[i].firstChild.children[1].innerHTML;
+		// 	time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
+		// 	mpeople[speaker]++;
+		// 	if (new Date(time).toString()==toPush.x.toString()){
+		// 		toPush.y=mpeople[people[0]] + mpeople[people[1]];
+		// 	}else{
+		// 		messages[0].push(toPush);
+		// 		toPush={x: new Date(time), y: mpeople[people[0]] + mpeople[people[1]]};
+		// 	}
+		// }
+		// log("gathered messages");
 
 		
 		drawGraph();
@@ -81,23 +116,32 @@ function start(){
 function drawGraph(){
 	log("plotting graph...");
 	var ctx = $(".messages");
-	var myChart = new Chart(ctx, {
+
+	var graphsData={
 		title: {
 			text: 'conversation between '+people[0]+' and '+people[1]
 	    },
 	    type: 'line',
 	    data: {
-	        //labels: dates,
-	        //dataPoints: [ messages[0] ]
-			datasets: [{
-				label: '# of messages sent',
-				data: messages[0]
-			}]
-			datasets: [{
-				label: '# of messages sent',
-				data: messages[1]
-			}]
-	    },
+			datasets: [
+				{
+					label: 'cummulative',	    
+					type: 'line',
+					data: messages[1],
+					fillColor: 'rgba(255, 206, 86, 1)'
+				}
+				// ,
+				// {
+				// 	label: 'per day',
+	   // 				 type: 'line',
+				// 	data: messages[0],
+				// 	fillColor 'rgba(255,99,132,1)'
+	            	
+				// }
+				
+			]
+		},
+	    
 	    options: {
 	        scales: {
 	            yAxes: [{
@@ -123,5 +167,6 @@ function drawGraph(){
 				}]
 	        }
 	    }
-	});
+	};
+	var myChart = new Chart(ctx, graphsData);
 }
