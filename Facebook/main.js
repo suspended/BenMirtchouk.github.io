@@ -5,6 +5,25 @@ function e_log(a){
 	console.log("%cError in main.js:%c "+a,"background: red; color: green;","background: none; color: black;");
 }
 
+/* This function was not written by me */
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 dates=[];
 messages=[];
 people=[];
@@ -18,8 +37,32 @@ function pick_person(){
 					convo=divs[i].children[j];
 					var convoText=convo.innerHTML;
 					people=convoText.substr(0,convoText.indexOf('<'));
+					apeople=people.split(',');
+					if (apeople.length>1){
+						var flen='@facebook.com'.length;
+						for (var u=0;u<apeople.length;u++){
+							if (u>0) apeople[u]=apeople[u].substr(1);
+
+							if (apeople[u].length>13 && apeople[u].substr(apeople[u].length-flen,flen)==='@facebook.com'){
+								id=apeople[u].substr(0,apeople[u].length-flen);
+								url="https://graph.facebook.com/"+id+"?fields=name&access_token=1160822430692370|SYTqhceToo_BtWLlNhMzfEHH6A0";
+
+								response=httpGet(url);
+								response=JSON.parse(response);
+								if (response['error']){
+									e_log("user with id "+id+" does not exist");
+								}else{
+									log(apeople[u]+" is now "+response['name']);
+									apeople[u]=response['name'];
+								}
+
+							}
+						}
+					}
+					people=apeople[0]+", "+apeople[1];
 					if (chats[0].indexOf(people)!=-1){
-						chats[1][chats[0].indexOf(people)].push([i,j])
+						chats[1][chats[0].indexOf(people)].push([i,j]);
+						// log("push("+people+")");
 					}else{
 						chats[0].push(people);
 						chats[1].push([[i,j]]);	
@@ -28,11 +71,6 @@ function pick_person(){
 			}
 
 			for (var i=0;i<chats[0].length;i++){
-				// var arr="";
-				// for (var j=0;j<chats[1][i].length;j++){
-				// 	arr+="["+chats[1][i][j][0]+","+chats[1][i][j][1]+"]";
-				// }
-
 				document.getElementById("select").innerHTML+="<option value='"+i+"'>"+chats[0][i]+"</option><br>";
 			}
 
