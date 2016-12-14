@@ -1,4 +1,11 @@
 .messages{
 	width: 90vw !important;
     margin: 0 auto;
+    display: none;
+}
+#tohide{
+	display: none;
+}
+#select{
+	width: 50vw;
 }
