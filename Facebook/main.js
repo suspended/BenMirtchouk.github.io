@@ -6,16 +6,6 @@ function e_log(a){
 }
 
 /* This function was not written by me */
-function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-    xmlHttp.send(null);
-}
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -32,7 +22,6 @@ lookups=[];
 function pick_person(){
 	parse(
 		function(){
-			// var counter=0;
 			log("gathering chats and correcting FB id's");
 			var divs=doc.firstChild.children[1].children[1].children;
 			for (var i=1;i<divs.length;i++){
@@ -51,7 +40,6 @@ function pick_person(){
 							if (lookups[apeople[u]]!=null){
 								apeople[u]=lookups[apeople[u]];
 							}else if (apeople[u].length>13 && apeople[u].substr(apeople[u].length-flen,flen)==='@facebook.com'){
-								// log(++counter);
 								id=apeople[u].substr(0,apeople[u].length-flen);
 								url="https://graph.facebook.com/"+id+"?fields=name&access_token=1160822430692370|SYTqhceToo_BtWLlNhMzfEHH6A0";
 
@@ -63,7 +51,6 @@ function pick_person(){
 								}else{
 									lookups[apeople[u]]=response['name'];
 
-									// log(apeople[u]+" is now "+response['name']);
 									apeople[u]=response['name'];
 								}
 								
@@ -79,7 +66,6 @@ function pick_person(){
 
 					if (chats[0].indexOf(people)!=-1){
 						chats[1][chats[0].indexOf(people)].push([i,j]);
-						// log("push("+people+")");
 					}else if(!broken){
 						chats[0].push(people);
 						chats[1].push([[i,j]]);
@@ -88,7 +74,6 @@ function pick_person(){
 			}
 
 			for (var i=0;i<chats[0].length;i++){
-				// document.getElementById("select").innerHTML+="<option value='"+i+"'>"+chats[0][i]+"</option><br>";
 				document.getElementById("checkbox").innerHTML+='<input type="checkbox" value="'+i+'">'+chats[0][i]+'<br>';
 			}
 
@@ -122,8 +107,7 @@ function start(){
 	labels=[];
 	
 	current=$("#checkbox").children("input:checked").map(function(){return [chats[1][this.value]];});
-	// cval=$("#select").val();
-	// current=chats[1][cval];
+	
 	for (var group=0;group<current.length;group++){
 		temp=[];
 		temp2=[];
