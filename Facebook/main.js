@@ -88,7 +88,8 @@ function pick_person(){
 			}
 
 			for (var i=0;i<chats[0].length;i++){
-				document.getElementById("select").innerHTML+="<option value='"+i+"'>"+chats[0][i]+"</option><br>";
+				// document.getElementById("select").innerHTML+="<option value='"+i+"'>"+chats[0][i]+"</option><br>";
+				document.getElementById("checkbox").innerHTML+='<input type="checkbox" value="'+i+'">'+chats[0][i]+'<br>';
 			}
 
 
@@ -117,57 +118,58 @@ function parse(_callback){
 }
 
 function start(){
-	messages[0]=[];
-	messages[1]=[];
-	mpeople=[];
-	mpeople2=[];
+	messages=[[],[]];
+	labels=[];
+	
+	current=$("#checkbox").children("input:checked").map(function(){return [chats[1][this.value]];});
+	// cval=$("#select").val();
+	// current=chats[1][cval];
+	for (var group=0;group<current.length;group++){
+		temp=[];
+		temp2=[];
+		mpeople=[];
+		mpeople2=[];
+		for (var fragment=0;fragment<current[group].length;fragment++){
+			cfrag=current[group][fragment];
+			convo=doc.firstChild.children[1].children[1].children[cfrag[0]].children[cfrag[1]];
+			var convoText=convo.innerHTML;
+			people=convoText.substr(0,convoText.indexOf('<'));
+			var tmp=people;
+			people=people.split(',');
+			for (var i=1;i<people.length;i++) people[i]=people[i].substr(1);
 
-	cval=$("#select").val();
-	current=chats[1][cval];
-
-	for (var fragment=0;fragment<current.length;fragment++){
-		cfrag=current[fragment];
-		convo=doc.firstChild.children[1].children[1].children[cfrag[0]].children[cfrag[1]];
-		var convoText=convo.innerHTML;
-		people=convoText.substr(0,convoText.indexOf('<'));
-		people=people.split(',');
-		for (var i=1;i<people.length;i++) people[i]=people[i].substr(1);
-		log("found people "+people);
-
-
-		time=convo.children[convo.children.length-(convo.children.length%2==0 ? 2:1)].firstChild.children[1].innerHTML;
-		time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
-		var toPush={x: new Date(time), y: 1 };
-		var toPush2={x: new Date(time), y: 1 };
-		for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
-
-			var speaker=convo.children[i].firstChild.firstChild.innerHTML;
-			var time=convo.children[i].firstChild.children[1].innerHTML;
+			time=convo.children[convo.children.length-(convo.children.length%2==0 ? 2:1)].firstChild.children[1].innerHTML;
 			time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
-			
-			if (mpeople[speaker]==null) mpeople[speaker]=0;
-			if (mpeople2[speaker]==null) mpeople2[speaker]=0;
+			var toPush={x: new Date(time), y: 1 };
+			var toPush2={x: new Date(time), y: 1 };
+			for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
 
-			mpeople[speaker]++;
-			mpeople2[speaker]++;
-			if (new Date(time).toString()==toPush.x.toString()){
-				var a=sum(mpeople,people);
-				var b=sum(mpeople2,people);
-				toPush.y=a;
-				toPush2.y=b;
-			}else{
-				messages[0].push(toPush);
-				messages[1].push(toPush2);
+				var speaker=convo.children[i].firstChild.firstChild.innerHTML;
+				var time=convo.children[i].firstChild.children[1].innerHTML;
+				time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
 				
-				mpeople=r(mpeople,people);
-				
+				if (mpeople[speaker]==null) mpeople[speaker]=0;
+				if (mpeople2[speaker]==null) mpeople2[speaker]=0;
 
-				var a=sum(mpeople,people);
-				var b=sum(mpeople2,people);
-				toPush={x: new Date(time), y: a};
-				toPush2={x: new Date(time), y: b};
+				mpeople[speaker]++;
+				mpeople2[speaker]++;
+				if (new Date(time).toString()==toPush.x.toString()){
+					toPush.y=sum(mpeople,people);
+					toPush2.y=sum(mpeople2,people);
+				}else{
+					temp.push(toPush);
+					temp2.push(toPush2);
+					
+					mpeople=r(mpeople,people);
+					
+					toPush={x: new Date(time), y: sum(mpeople,people)};
+					toPush2={x: new Date(time), y: sum(mpeople2,people)};
+				}
 			}
 		}
+		labels.push(tmp);
+		messages[0].push(temp);
+		messages[1].push(temp2);
 	}
 	log("gathered messages");
 	
@@ -204,25 +206,7 @@ function drawGraph(){
 	var graphsData={
 	    type: 'line',
 	    data: {
-			datasets: [
-				{
-					label: 'cumulative',	    
-					type: 'line',
-					data: messages[1],
-					backgroundColor: 'rgba(1,212,255,.1)',
-		            borderColor: 'rgba(1,212,255,.5)',
-		            lineTension: 0
-				},
-				{
-					label: 'per day',	    
-					type: 'line',
-					data: messages[0],
-					backgroundColor: 'rgba(226,78,78,.1)',
-		            borderColor: 'rgba(226,78,78,.5)',
-		            lineTension: 0
-				}
-				
-			]
+			datasets: []
 		},
 	    
 	    options: {
@@ -252,5 +236,24 @@ function drawGraph(){
 	    }
 	};
 	console.log(graphsData);
+	for (var i=0;i<messages[0].length;i++){
+		// graphsData.data.datasets.push({
+		// 	label: 'per day',	    
+		// 	type: 'line',
+		// 	data: messages[0][i],
+		// 	backgroundColor: 'rgba(226,78,78,.1)',
+  //           borderColor: 'rgba(226,78,78,.5)',
+  //           lineTension: 0
+		// });
+		graphsData.data.datasets.push({
+			label: labels[i].length>=30 ? labels[i].substr(0,30)+"...":labels[i],	    
+			type: 'line',
+			data: messages[1][i],
+			backgroundColor: 'rgba(1,212,255,0)',
+            borderColor: generateColor(),
+            lineTension: 0
+		});
+	}
+
 	myChart = new Chart(ctx, graphsData);
 }
