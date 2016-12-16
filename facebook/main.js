@@ -233,11 +233,11 @@ function drawGraph(){
 	console.log(graphsData);
 	for (var i=0;i<messages[0].length;i++){
 		// graphsData.data.datasets.push({
-		// 	label: 'per day',	    
+		// 	label: labels[i].length>=30 ? labels[i].substr(0,30)+"...":labels[i],	    
 		// 	type: 'line',
 		// 	data: messages[0][i],
-		// 	backgroundColor: 'rgba(226,78,78,.1)',
-  //           borderColor: 'rgba(226,78,78,.5)',
+		// 	backgroundColor: 'rgba(226,78,78,0)',
+  //           borderColor: generateColor(),
   //           lineTension: 0
 		// });
 		graphsData.data.datasets.push({
