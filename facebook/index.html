@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Facebook</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+		<script src="node_modules\chart.js\src\bundle.js"></script>
+        <script src="main.js"></script>
+        <script src="colors.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="../animate.css">
+	</head>
+
+	<body>
+		<div id="message_container">
+			<canvas id="messages" class="messages"></canvas>
+		</div>
+		<input type="file"></input>
+		<button onclick="pick_person()">upload</button><br>
+		<!--<input type="text" id="start" placeholder="start date (MM DD, YYYY)"></input>
+		<input type="text" id="end" placeholder="end date (MM DD, YYYY)"></input>
+		-->
+		<div id="tohide">
+			<!-- <select id="select"></select> -->
+			<button onclick="start()">plot!</button>
+			<div id="checkbox">
+				<div id="checkbox1"></div>
+				<div id="checkbox2"></div>
+			</div>
+		</div>
+
+
+	</body>
+
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-80837771-2', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</html>
