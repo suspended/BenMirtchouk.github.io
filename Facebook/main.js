@@ -99,7 +99,7 @@ function parse(_callback){
 
 	var reader = new FileReader();
 	reader.addEventListener("load", function() {
-		string=reader.result;
+		string=reader.result;    
 		log("read file");
 		var parser = new DOMParser();
 		doc = parser.parseFromString(string, "text/html");
