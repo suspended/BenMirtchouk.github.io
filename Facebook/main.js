@@ -63,7 +63,9 @@ function pick_person(){
 						if (k!=0) people+=", ";
 						people+=apeople[k];
 					}
-
+					
+					doc.firstChild.children[1].children[1].children[i].children[j].innerHTML=people+convoText.substr(convoText.indexOf('<'));
+					
 					if (chats[0].indexOf(people)!=-1){
 						chats[1][chats[0].indexOf(people)].push([i,j]);
 					}else if(!broken){
@@ -74,7 +76,12 @@ function pick_person(){
 			}
 
 			for (var i=0;i<chats[0].length;i++){
-				document.getElementById("checkbox").innerHTML+='<input type="checkbox" value="'+i+'">'+chats[0][i]+'<br>';
+				var len=chats[0][i].split(",").length;
+				if (len==2)
+					document.getElementById("checkbox1").innerHTML+='<input type="checkbox" value="'+i+'">'+chats[0][i]+'<br>';
+				else if (len>2)
+					document.getElementById("checkbox2").innerHTML+='<input type="checkbox" value="'+i+'">'+chats[0][i]+'<br>';
+				
 			}
 
 
@@ -105,16 +112,20 @@ function parse(_callback){
 function start(){
 	messages=[[],[]];
 	labels=[];
-	
-	current=$("#checkbox").children("input:checked").map(function(){return [chats[1][this.value]];});
-	
-	for (var group=0;group<current.length;group++){
+
+	current=$("#checkbox1").children("input:checked").map(function(){return [chats[1][this.value]];});
+	current2=$("#checkbox2").children("input:checked").map(function(){return [chats[1][this.value]];});
+
+	for (var group=0;group<current.length + current2.length;group++){
 		temp=[];
 		temp2=[];
 		mpeople=[];
 		mpeople2=[];
-		for (var fragment=0;fragment<current[group].length;fragment++){
-			cfrag=current[group][fragment];
+		var tempcurr=group<current.length ? current:current2;
+		var tempgroup=group - (group<current.length ? 0:current.length);
+		for (var fragment=0;fragment<tempcurr[tempgroup].length;fragment++){
+			cfrag=tempcurr[tempgroup][fragment];
+
 			convo=doc.firstChild.children[1].children[1].children[cfrag[0]].children[cfrag[1]];
 			var convoText=convo.innerHTML;
 			people=convoText.substr(0,convoText.indexOf('<'));

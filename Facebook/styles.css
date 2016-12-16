@@ -9,3 +9,9 @@
 #select{
 	width: 50vw;
 }
+#checkbox1, #checkbox2{
+	width: 47vw;
+    margin: 0;
+    display: inline-block;
+    float: left;
+}
