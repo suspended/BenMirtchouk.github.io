@@ -32,7 +32,7 @@ function pick_person(){
 					apeople=people.split(',');
 
 					var broken=false;
-					var flen='@facebook.com'.length;
+					flen='@facebook.com'.length;
 					if (apeople.length>1){
 						for (var u=0;u<apeople.length;u++){
 							if (u>0) apeople[u]=apeople[u].substr(1);
@@ -140,6 +140,10 @@ function start(){
 			for (var i=convo.children.length-(convo.children.length%2==0 ? 4:3);i>=0;i-=2){
 
 				var speaker=convo.children[i].firstChild.firstChild.innerHTML;
+				if (speaker.length>13 && speaker.substr(speaker.length-flen,flen)==='@facebook.com'){
+					speaker=lookups[speaker];
+				}
+
 				var time=convo.children[i].firstChild.children[1].innerHTML;
 				time=time.substr(time.indexOf(',')+2,time.indexOf(' at ')-time.indexOf(',')-2);
 				
@@ -158,7 +162,7 @@ function start(){
 							break;
 						case "1":
 							var said=convo.children[i+1].innerHTML;
-							var times=(said.match(/[:;][)D]|[(][:;]/g) || []).length;
+							var times=(said.match(/[:;][)D]|[(][:;]|:P/g) || []).length;
 							mpeople[speaker]+=times;
 							mpeople2[speaker]+=times;
 							// console.log(said+"\t"+times+"\t"+mpeople2[speaker]);
@@ -177,6 +181,7 @@ function start(){
 					
 					toPush={x: new Date(time), y: sum(mpeople,people)};
 					toPush2={x: new Date(time), y: sum(mpeople2,people)};
+					// console.log(new Date(time) +"\t"+ sum(mpeople2,people)+"="+mpeople2[people[0]]+"+"+mpeople2[people[1]]);
 				}
 			}
 		}
