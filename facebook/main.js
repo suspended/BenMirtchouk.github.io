@@ -146,8 +146,26 @@ function start(){
 				if (mpeople[speaker]==null) mpeople[speaker]=0;
 				if (mpeople2[speaker]==null) mpeople2[speaker]=0;
 
-				mpeople[speaker]++;
-				mpeople2[speaker]++;
+				var sel=$('input[name=type]:checked').val();
+				if (sel==null){
+					mpeople[speaker]++;
+					mpeople2[speaker]++;
+				}else
+					switch(sel){
+						case "0":
+							mpeople[speaker]++;
+							mpeople2[speaker]++;
+							break;
+						case "1":
+							var said=convo.children[i+1].innerHTML;
+							var times=(said.match(/[:;][)D]|[(][:;]/g) || []).length;
+							mpeople[speaker]+=times;
+							mpeople2[speaker]+=times;
+							// console.log(said+"\t"+times+"\t"+mpeople2[speaker]);
+							break;
+					}
+
+
 				if (new Date(time).toString()==toPush.x.toString()){
 					toPush.y=sum(mpeople,people);
 					toPush2.y=sum(mpeople2,people);
