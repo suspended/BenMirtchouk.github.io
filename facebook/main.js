@@ -14,20 +14,31 @@ function httpGet(theUrl) {
   return xmlHttp.responseText;
 }
 
+lookups = [];
 AFINN111 = [];
 negations = [];
 
-dates = [];
-messages = [];
-people = [];
-chats = [
-  [],
-  []
-];
-lookups = [];
+function full_reset() {
+  dates = [];
+  messages = [];
+  people = [];
+  chats = [
+    [],
+    []
+  ];
+
+  document.getElementById("checkbox1").innerHTML = "";
+  document.getElementById("checkbox2").innerHTML = "";
+  document.getElementById("tohide").style["display"] = "none";
+
+  reset();
+}
 
 function pick_person() {
-  if ($('input[name=type]:checked').val() === "sentiment_analysis") {
+  full_reset();
+  log("full reset");
+
+  if (AFINN111.length == 0 && $('input[name=type]:checked').val() === "sentiment_analysis") {
     AFINN111 = getJSON();
     negations = getNegations();
     log("loaded AFINN-111");
@@ -308,26 +319,42 @@ function drawGraph() {
       }
     }
   };
-  console.log(graphsData);
-  for (var i = 0; i < messages[0].length; i++) {
-    // graphsData.data.datasets.push({
-    // 	label: labels[i].length>=30 ? labels[i].substr(0,30)+"...":labels[i],
-    // 	type: 'line',
-    // 	data: messages[0][i],
-    // 	backgroundColor: 'rgba(226,78,78,0)',
-    //           borderColor: generateColor(),
-    //           lineTension: 0
-    // });
-    var perday_or_cumulative = $('input[name=counting]:checked').val();
-    if (perday_or_cumulative == null) perday_or_cumulative = 0;
-    graphsData.data.datasets.push({
-      label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
-      type: 'line',
-      data: messages[perday_or_cumulative][i],
-      backgroundColor: 'rgba(1,212,255,0)',
-      borderColor: generateColor(),
-      lineTension: 0
-    });
+  // console.log(graphsData);
+
+
+  var perday_or_cumulative = $('input[name=counting]:checked').val();
+  if (perday_or_cumulative == null) perday_or_cumulative = 1;
+
+  for (var i = 0; i < messages[perday_or_cumulative].length; i++) {
+    tmparr = [];
+    var oldarr = messages[perday_or_cumulative][i];
+    newarr = [];
+
+    for (var j = 1; j < oldarr.length; j++) {
+      var time1 = new Date(oldarr[j].x);
+      var time2 = new Date(oldarr[j - 1].x);
+
+      if (time1 < time2) {
+        //found inconsistancy in data
+        newarr.push(tmparr);
+        tmparr = [oldarr[j]];
+      } else {
+        tmparr.push(oldarr[j]);
+      }
+    }
+    newarr.push(tmparr);
+
+    var tmpColor = generateColor();
+    for (var n = 0; n < newarr.length; n++) {
+      graphsData.data.datasets.push({
+        label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
+        type: 'line',
+        data: newarr[n],
+        backgroundColor: 'rgba(1,212,255,0)',
+        borderColor: tmpColor,
+        lineTension: 0
+      });
+    }
   }
 
   myChart = new Chart(ctx, graphsData);
