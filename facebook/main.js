@@ -275,6 +275,8 @@ function r(a, b) {
 }
 
 function reset() {
+  if (window.myChart != null) myChart.destroy();
+
   $('#messages').remove();
   $('#message_container').append('<canvas id="messages" class="messages"></canvas>');
 }
