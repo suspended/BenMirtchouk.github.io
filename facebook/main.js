@@ -101,8 +101,10 @@ function pick_person() {
     }
 
     for (var i = 0; i < chats[0].length; i++) {
+      var t = total(chats[1][i]);
       var len = chats[0][i].split(",").length;
-      var str = '<input type="checkbox" value="' + i + '">' + chats[0][i] + '<br>';
+      // var str = '<input type="checkbox" value="' + i + '">' + chats[0][i].substr(2, 1) + '\t' + t + '<br>';
+      var str = '<input type="checkbox" value="' + i + '">' + chats[0][i] + '\t' + t + '<br>';
       if (len == 2)
         document.getElementById("checkbox1").innerHTML += str;
       else if (len > 2)
@@ -114,6 +116,22 @@ function pick_person() {
     log("chats gathered");
   });
 
+}
+
+p = document.createElement("P");
+
+function total(a) {
+  var tsum = 0;
+  for (var i = 0; i < a.length; i++) {
+    var t1 = a[i][0];
+    var t2 = a[i][1];
+    var convo = doc.firstChild.children[1].children[1].children[t1].children[t2].children;
+
+    for (var j = 0; j < convo.length; j++)
+      if ($(convo[j]).is("p"))
+        tsum++;
+  }
+  return tsum;
 }
 
 function parse(_callback) {
@@ -138,6 +156,7 @@ function parse(_callback) {
 }
 
 function start() {
+
   messages = [
     [],
     []
@@ -350,6 +369,7 @@ function drawGraph() {
     for (var n = 0; n < newarr.length; n++) {
       graphsData.data.datasets.push({
         label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
+        // label: labels[i].substr(2, 1),
         type: 'line',
         data: newarr[n],
         backgroundColor: 'rgba(1,212,255,0)',
