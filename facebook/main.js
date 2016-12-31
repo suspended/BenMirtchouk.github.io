@@ -365,7 +365,7 @@ function drawGraph() {
     }
     newarr.push(tmparr);
 
-    var tmpColor = generateColor();
+    var tmpColor = generateColor(labels[i].substr(labels[i].indexOf(',') + 2));
     for (var n = 0; n < newarr.length; n++) {
       graphsData.data.datasets.push({
         label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
