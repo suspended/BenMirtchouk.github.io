@@ -342,6 +342,8 @@ function drawGraph() {
   };
   // console.log(graphsData);
 
+  var user = doc.firstChild.firstChild.children[1].innerHTML;
+  user = user.substr(0, user.indexOf(' - '));
 
   var perday_or_cumulative = $('input[name=counting]:checked').val();
   if (perday_or_cumulative == null) perday_or_cumulative = 1;
@@ -365,7 +367,17 @@ function drawGraph() {
     }
     newarr.push(tmparr);
 
-    var tmpColor = generateColor(labels[i].substr(labels[i].indexOf(',') + 2));
+    seed = "";
+    peeps = labels[i].split(", ");
+
+    for (var p = 0; p < peeps.length; p++) {
+      if (peeps[p] !== user) {
+        seed = peeps[p];
+        break;
+      }
+    }
+
+    var tmpColor = generateColor(seed);
     for (var n = 0; n < newarr.length; n++) {
       graphsData.data.datasets.push({
         label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
