@@ -38,7 +38,7 @@ function pick_person() {
   full_reset();
   log("full reset");
 
-  if (AFINN111.length == 0 && $('input[name=type]:checked').val() === "sentiment_analysis") {
+  if (AFINN111.length == 0) {
     AFINN111 = getJSON();
     negations = getNegations();
     log("loaded AFINN-111");
