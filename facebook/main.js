@@ -367,8 +367,8 @@ function drawGraph() {
     }
     newarr.push(tmparr);
 
-    seed = "";
     peeps = labels[i].split(", ");
+    seed = peeps[0];
 
     for (var p = 0; p < peeps.length; p++) {
       if (peeps[p] !== user) {

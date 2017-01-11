@@ -1,48 +1,73 @@
 <html>
-	<head>
-		<title>Ben Mirtchouk</title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
+<head>
+	<title>Ben Mirtchouk</title>
 
-        <script src="typing.js"></script>
-        <script src="focus.js"></script>
-        <script src="enter.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
 
-		<link rel="stylesheet" type="text/css" href="styles.css">
-		<link rel="stylesheet" type="text/css" href="animate.css">
-	</head>
+	<script src="typing.js"></script>
+	<script src="focus.js"></script>
+	<script src="enter.js"></script>
 
-	<body bgcolor="#000000">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="animate.css">
 
-		<div id="texts">
-			<p id="text" class="text UbuntuFont"></p>
-		</div>
-		<!--<input id="input" type="text" class="input" onblur="refocus()"></input>-->
-		
-		<span id="input" type="text" class="input" onblur="refocus()" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></span>
-
-		<p id="cursor" class="text cursor UbuntuFont"><strong>_</strong></p>
-		<div id="noType" value="1"></div>
-
-	</body>
-
-	<script>
-		window.onload=typeString("Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.");
-	</script>
+	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="manifest" href="favicon/manifest.json">
 
 
+</head>
+
+<body bgcolor="#000000">
+
+	<div id="texts">
+		<p id="text" class="text UbuntuFont"></p>
+	</div>
+	<!--<input id="input" type="text" class="input" onblur="refocus()"></input>-->
+
+	<span id="input" type="text" class="input" onblur="refocus()" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></span>
+
+	<p id="cursor" class="text cursor UbuntuFont"><strong>_</strong></p>
+	<div id="noType" value="1"></div>
+
+</body>
+
+<script>
+	window.onload = typeString("Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.");
+</script>
 
 
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-80837771-2', 'auto');
-	  ga('send', 'pageview');
 
-	</script>
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+	ga('create', 'UA-80837771-2', 'auto');
+	ga('send', 'pageview');
+</script>
+
 </html>
