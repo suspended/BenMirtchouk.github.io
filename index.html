@@ -3,13 +3,13 @@
 <head>
 	<title>Ben Mirtchouk</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script defer src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
 
-	<script src="typing.js"></script>
-	<script src="focus.js"></script>
-	<script src="enter.js"></script>
+	<script defer src="typing.js"></script>
+	<script defer src="focus.js"></script>
+	<script defer src="enter.js" id="last"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" type="text/css" href="animate.css">
@@ -47,7 +47,11 @@
 </body>
 
 <script>
-	window.onload = typeString("Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.");
+	document.getElementById("last").onload = loaded;
+
+	function loaded() {
+		typeString("Hi, I'm Ben Mirtchouk! Nice to meet you! Would you like to enter the matrix? (y or n):EOF.");
+	}
 </script>
 
 
@@ -71,3 +75,4 @@
 </script>
 
 </html>
+>
