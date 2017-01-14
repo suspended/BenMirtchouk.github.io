@@ -17,6 +17,8 @@ function httpGet(theUrl) {
 lookups = [];
 AFINN111 = [];
 negations = [];
+progress = {};
+progress_val = {};
 
 function full_reset() {
   dates = [];
@@ -27,6 +29,10 @@ function full_reset() {
     []
   ];
 
+  progress = {};
+  progress_val = {};
+  console.log("hello");
+
   document.getElementById("checkbox1").innerHTML = "";
   document.getElementById("checkbox2").innerHTML = "";
   document.getElementById("tohide").style["display"] = "none";
@@ -36,19 +42,37 @@ function full_reset() {
 
 function pick_person() {
   full_reset();
+
+  Object.defineProperty(window, 'progress', {
+    get: function() {
+      updateProgress();
+      return progress_val;
+    },
+    set: function(value) {
+      updateProgress();
+      progress_val = value;
+    }
+  });
+
   log("full reset");
 
   if (AFINN111.length == 0) {
     AFINN111 = getJSON();
+    //console.time('AFINN');
+    progress.AFINN = .5;
     negations = getNegations();
+    progress.AFINN = 1;
+    //console.timeEnd('AFINN');
     log("loaded AFINN-111");
   }
 
   parse(function() {
     log("gathering chats and correcting FB id's");
     var divs = doc.firstChild.children[1].children[1].children;
+    //console.time('chats');
     for (var i = 1; i < divs.length; i++) {
       for (var j = 0; j < divs[i].children.length; j++) {
+
         convo = divs[i].children[j];
         var convoText = convo.innerHTML;
         people = convoText.substr(0, convoText.indexOf('<'));
@@ -97,9 +121,13 @@ function pick_person() {
           ]);
         }
 
+        progress.chats = ((j + 1) / (divs[i].children.length - 1) + i - 1) / (divs.length - 1);
       }
     }
 
+    //console.timeEnd('chats');
+
+    //console.time('checkboxes');
     for (var i = 0; i < chats[0].length; i++) {
       var t = total(chats[1][i]);
       var len = chats[0][i].split(",").length;
@@ -109,7 +137,9 @@ function pick_person() {
         document.getElementById("checkbox1").innerHTML += str;
       else if (len > 2)
         document.getElementById("checkbox2").innerHTML += str;
+      progress.checkboxes = (i + 1) / (chats[0].length - 1);
     }
+    //console.timeEnd('checkboxes');
 
 
     document.getElementById("tohide").style["display"] = "block";
@@ -118,7 +148,7 @@ function pick_person() {
 
 }
 
-p = document.createElement("P");
+// p = document.createElement("P");
 
 function total(a) {
   var tsum = 0;
@@ -135,6 +165,7 @@ function total(a) {
 }
 
 function parse(_callback) {
+
   log("starting...");
   messages = [
     [],
@@ -144,19 +175,23 @@ function parse(_callback) {
   var string;
 
   var reader = new FileReader();
+  //console.time('parse');
+  progress.parse = .1;
   reader.addEventListener("load", function() {
     string = reader.result;
+    progress.parse = .6;
     log("read file");
     var parser = new DOMParser();
     doc = parser.parseFromString(string, "text/html");
+    progress.parse = 1;
     log("parsed file");
+    //console.timeEnd('parse');
     _callback();
   });
   reader.readAsText(document.querySelector('input').files[0]);
 }
 
 function start() {
-
   messages = [
     [],
     []
@@ -170,6 +205,7 @@ function start() {
     return [chats[1][this.value]];
   });
 
+  //console.time('data');
   for (var group = 0; group < current.length + current2.length; group++) {
     temp = [];
     temp2 = [];
@@ -197,8 +233,8 @@ function start() {
         x: new Date(time),
         y: 1
       };
-      for (var i = convo.children.length - (convo.children.length % 2 == 0 ? 4 : 3); i >= 0; i -= 2) {
-
+      var convoLen = convo.children.length;
+      for (var i = convoLen - 2; i >= 0; i -= 2) {
         var speaker = convo.children[i].firstChild.firstChild.innerHTML;
         if (speaker.length > 13 && speaker.substr(speaker.length - flen, flen) === '@facebook.com') {
           speaker = lookups[speaker];
@@ -267,12 +303,19 @@ function start() {
             y: sum(mpeople2, people)
           };
         }
+
+
+        var tmpprog = (convoLen - 2 - i) / (convoLen - 2);
+        tmpprog = (tmpprog + fragment) / tempcurr[tempgroup].length;
+        tmpprog = (tmpprog + group) / current.length + current2.length;
+        progress.data = tmpprog;
       }
     }
     labels.push(tmp);
     messages[0].push(temp);
     messages[1].push(temp2);
   }
+  //console.timeEnd('data');
   log("gathered messages");
 
   drawGraph();
@@ -348,6 +391,7 @@ function drawGraph() {
   var perday_or_cumulative = $('input[name=counting]:checked').val();
   if (perday_or_cumulative == null) perday_or_cumulative = 1;
 
+  //console.time('draw');
   for (var i = 0; i < messages[perday_or_cumulative].length; i++) {
     tmparr = [];
     var oldarr = messages[perday_or_cumulative][i];
@@ -388,9 +432,36 @@ function drawGraph() {
         borderColor: tmpColor,
         lineTension: 0
       });
+
+      tmpprog = (n + 1) / newarr.length;
+      tmpprog = (tmpprog + i) / messages[perday_or_cumulative].length;
+      progress.draw = tmpprog;
     }
   }
+  //console.timeEnd('draw');
 
   myChart = new Chart(ctx, graphsData);
   log("graph drawn");
+}
+
+function uploadprogress() {
+  progress.AFINN = Math.max(progress.AFINN, 1);
+  progress.parse = Math.max(progress.parse, 1);
+  progress.chats = Math.max(progress.chats, 1);
+  progress.checkboxes = Math.max(progress.checkboxes, 1);
+
+  var total = progress.AFINN * 0.01 / 15.6 + progress.parse * 1.79 / 15.6 + progress.chats * 11.3 / 15.6 + progress.checkboxes * 2.5 / 15.6;
+  return Math.abs(1 - total) < .02 ? 1 : total;
+}
+
+function graphprogress() {
+  progress.data = Math.max(progress.data, 1);
+  progress.draw = Math.max(progress.draw, 1);
+
+  var total = progress.data * 596 / 597 + progress.draw * 1 / 597;
+  return Math.abs(1 - total) < .02 ? 1 : total;
+}
+
+function updateProgress() {
+
 }
