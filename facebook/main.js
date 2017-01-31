@@ -148,7 +148,15 @@ function set_checkboxes(chats) {
 
     // var str = '<input type="checkbox" value="' + i + '">' + chats[0][i] + '\t' + t + '<br>';
     var inputElement = document.createElement('input');
-    inputElement.type = "checkbox";
+
+    var chatcount_selection = $('input[name=chatcount]:checked').val();
+    if (chatcount_selection == null || chatcount_selection == "multiple_chats") {
+      inputElement.type = "checkbox";
+    } else if (chatcount_selection = "single_chat") {
+      inputElement.type = "radio";
+      inputElement.name = "radio";
+    }
+
     inputElement.value = i;
 
     var spanElement = document.createElement('span');
@@ -243,15 +251,34 @@ function getData() {
 
       time = conversation.children[conversation.children.length - 2].firstChild.children[1].innerHTML;
       time = time.substr(time.indexOf(',') + 2, time.indexOf(' at ') - time.indexOf(',') - 2);
-      //
-      var perday_data = {
-        x: new Date(time),
-        y: 1
-      };
-      var cumulative_data = {
-        x: new Date(time),
-        y: 1
-      };
+
+
+      var chatcount_selection = $('input[name=chatcount]:checked').val();
+      if (chatcount_selection == null)
+        chatcount_selection = "multiple_chats";
+
+      switch (chatcount_selection) {
+        case "multiple_chats":
+          var perday_data = {
+            x: new Date(time),
+            y: 1
+          };
+          var cumulative_data = {
+            x: new Date(time),
+            y: 1
+          };
+          break;
+        case "single_chat":
+          var perday_data = {
+            x: new Date(time),
+            y: perday_messages
+          };
+          var cumulative_data = {
+            x: new Date(time),
+            y: cumulative_messages
+          };
+          break;
+      }
       var convoLen = conversation.children.length;
       for (var i = convoLen - 2; i >= 0; i -= 2) {
         var speaker = conversation.children[i].firstChild.firstChild.innerHTML;
@@ -260,8 +287,15 @@ function getData() {
         var message_time = conversation.children[i].firstChild.children[1].innerHTML;
         message_time = message_time.substr(message_time.indexOf(',') + 2, message_time.indexOf(' at ') - message_time.indexOf(',') - 2);
 
-        if (perday_messages[speaker] == null) perday_messages[speaker] = 0;
-        if (cumulative_messages[speaker] == null) cumulative_messages[speaker] = 0;
+        if (perday_messages[speaker] == null) {
+          perday_messages[speaker] = 0;
+          perday_messages.length++;
+        }
+        if (cumulative_messages[speaker] == null) {
+          cumulative_messages[speaker] = 0;
+          cumulative_messages.length++;
+        }
+
 
         var type_selection = $('input[name=type]:checked').val();
 
@@ -303,28 +337,83 @@ function getData() {
 
 
         if (new Date(message_time).toString() == perday_data.x.toString()) {
-          perday_data.y = sum(perday_messages, conversation_members);
-          cumulative_data.y = sum(cumulative_messages, conversation_members);
+          switch (chatcount_selection) {
+            case "multiple_chats":
+              perday_data.y = sum(perday_messages, conversation_members);
+              cumulative_data.y = sum(cumulative_messages, conversation_members);
+              break;
+            case "single_chat":
+              perday_data.y = perday_messages;
+              cumulative_data.y = cumulative_messages;
+              break;
+          }
         } else {
-          temp.push(perday_data);
-          temp2.push(cumulative_data);
+          switch (chatcount_selection) {
+            case "multiple_chats":
+              temp.push(perday_data);
+              temp2.push(cumulative_data);
+              break;
+            case "single_chat":
+              var perday_data_deepcopy = [];
+              var cumulative_data_deepcopy = [];
+              for (var dc = 0; dc < conversation_members.length; dc++) {
+                perday_data_deepcopy[conversation_members[dc]] = perday_data.y[conversation_members[dc]];
+                cumulative_data_deepcopy[conversation_members[dc]] = cumulative_data.y[conversation_members[dc]];
+              }
+              temp.push({
+                x: perday_data.x,
+                y: perday_data_deepcopy
+              });
+              temp2.push({
+                x: cumulative_data.x,
+                y: cumulative_data_deepcopy
+              });
+              break;
+          }
 
-          perday_messages = r(perday_messages, conversation_members);
 
-          perday_data = {
-            x: new Date(message_time),
-            y: sum(perday_messages, conversation_members)
-          };
-          cumulative_data = {
-            x: new Date(message_time),
-            y: sum(cumulative_messages, conversation_members)
-          };
+          switch (chatcount_selection) {
+            case "multiple_chats":
+              perday_messages = r(perday_messages, conversation_members);
+
+              perday_data = {
+                x: new Date(message_time),
+                y: sum(perday_messages, conversation_members)
+              };
+              cumulative_data = {
+                x: new Date(message_time),
+                y: sum(cumulative_messages, conversation_members)
+              };
+              break;
+            case "single_chat":
+              perday_messages = r(perday_messages, conversation_members);
+
+              perday_data = {
+                x: new Date(message_time),
+                y: []
+              };
+              cumulative_data = {
+                x: new Date(message_time),
+                y: cumulative_messages
+              };
+              break;
+          }
+
         }
 
 
       }
     }
-    labels.push(conversation_members_str);
+
+    switch (chatcount_selection) {
+      case "multiple_chats":
+        labels.push(conversation_members_str);
+        break;
+      case "single_chat":
+        labels = conversation_members;
+        break;
+    }
+
     messages[0].push(temp);
     messages[1].push(temp2);
   }
@@ -352,6 +441,7 @@ function r(array, keys) {
 }
 
 function makeGraph(messages, labels) {
+  console.log(messages);
   var graphsData = {
     type: 'line',
     data: {
@@ -391,53 +481,94 @@ function makeGraph(messages, labels) {
   var perday_or_cumulative = $('input[name=counting]:checked').val();
   if (perday_or_cumulative == null) perday_or_cumulative = 1;
 
+  var chatcount_selection = $('input[name=chatcount]:checked').val();
+  if (chatcount_selection == null)
+    chatcount_selection = "multiple_chats";
 
-  for (var i = 0; i < messages[perday_or_cumulative].length; i++) {
-    tmparr = [];
-    var oldarr = messages[perday_or_cumulative][i];
-    newarr = [];
+  switch (chatcount_selection) {
+    case "multiple_chats":
 
-    var j;
-    for (j = 1; j < oldarr.length; j++) {
-      var time1 = new Date(oldarr[j].x);
-      var time2 = new Date(oldarr[j - 1].x);
+      for (var i = 0; i < messages[perday_or_cumulative].length; i++) {
+        tmparr = [];
+        var oldarr = messages[perday_or_cumulative][i];
+        newarr = [];
 
-      if (time1 < time2) {
-        //found inconsistancy in data
-        newarr.push(tmparr);
-        tmparr = [oldarr[j]];
-      } else {
-        tmparr.push(oldarr[j]);
+        var j;
+        for (j = 1; j < oldarr.length; j++) {
+          var time1 = new Date(oldarr[j].x);
+          var time2 = new Date(oldarr[j - 1].x);
+
+          if (time1 < time2) {
+            //found inconsistancy in data
+            newarr.push(tmparr);
+            tmparr = [oldarr[j]];
+          } else {
+            tmparr.push(oldarr[j]);
+          }
+        }
+        if (j == 1) {
+          newarr.push([oldarr[0]]);
+        } else {
+          newarr.push(tmparr);
+        }
+
+        peeps = labels[i].split(", ");
+        seed = peeps[0];
+
+        for (var p = 0; p < peeps.length; p++) {
+          if (peeps[p] !== user) {
+            seed = peeps[p];
+            break;
+          }
+        }
+
+        var tmpColor = generateColor(seed);
+        for (var n = 0; n < newarr.length; n++) {
+          graphsData.data.datasets.push({
+            label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
+            type: 'line',
+            data: newarr[n],
+            backgroundColor: 'rgba(1,212,255,0)',
+            borderColor: tmpColor,
+            lineTension: 0
+          });
+        }
       }
-    }
-    if (j == 1) {
-      newarr.push([oldarr[0]]);
-    } else {
-      newarr.push(tmparr);
-    }
 
-    peeps = labels[i].split(", ");
-    seed = peeps[0];
+      break;
+    case "single_chat":
+      var newdata = [];
+      for (var j = 0; j < labels.length; j++)
+        newdata.push([]);
 
-    for (var p = 0; p < peeps.length; p++) {
-      if (peeps[p] !== user) {
-        seed = peeps[p];
-        break;
+      messages = messages[perday_or_cumulative][0];
+
+      for (var i = 0; i < messages.length; i++) {
+        for (var j = 0; j < labels.length; j++) {
+          newdata[j][i] = {
+            x: messages[i].x,
+            y: messages[i].y[labels[j]]
+          }
+        }
       }
-    }
 
-    var tmpColor = generateColor(seed);
-    for (var n = 0; n < newarr.length; n++) {
-      graphsData.data.datasets.push({
-        label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
-        type: 'line',
-        data: newarr[n],
-        backgroundColor: 'rgba(1,212,255,0)',
-        borderColor: tmpColor,
-        lineTension: 0
-      });
-    }
+      for (var i = 0; i < newdata.length; i++) {
+        var seed = labels[i];
+
+        var tmpColor = generateColor(seed);
+
+        graphsData.data.datasets.push({
+          label: labels[i].length >= 30 ? labels[i].substr(0, 30) + "..." : labels[i],
+          type: 'line',
+          data: newdata[i],
+          backgroundColor: 'rgba(1,212,255,0)',
+          borderColor: tmpColor,
+          lineTension: 0
+        });
+      }
+
+
+      break;
   }
-
   return graphsData;
 }

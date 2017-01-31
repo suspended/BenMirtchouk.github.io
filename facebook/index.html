@@ -23,17 +23,23 @@
 
 	<button onclick="upload()">upload</button>
 
+	<br>
+
+	<input type="radio" name="chatcount" value="multiple_chats"> multiple chats
+	<input type="radio" name="chatcount" value="single_chat"> single chat
+
+	<br>
+
 	<input type="radio" name="type" value="total_messages"> messages
 	<input type="radio" name="type" value="happy_emojis"> happy emojis [:), ;), :D, :P, etc]
 	<input type="radio" name="type" value="sentiment_analysis"> sentiment analysis
-	<br>
-
 
 	<br>
+
 	<div id="tohide">
-		<input type="radio" name="counting" value="1"> Cumulative
-		<input type="radio" name="counting" value="0"> Per day
-		<br>
+		<input type="radio" name="counting" value="1"> cumulative
+		<input type="radio" name="counting" value="0"> per day
+		<br><br>
 
 		<button onclick="plot()">plot!</button>
 		<div id="checkbox">
