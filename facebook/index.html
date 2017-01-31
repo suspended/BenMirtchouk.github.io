@@ -13,7 +13,6 @@
 	<script src="colors.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="../animate.css">
 </head>
 
 <body>
@@ -22,7 +21,7 @@
 	</div>
 	<input type="file"></input>
 
-	<button onclick="pick_person()">upload</button>
+	<button onclick="upload()">upload</button>
 
 	<input type="radio" name="type" value="total_messages"> messages
 	<input type="radio" name="type" value="happy_emojis"> happy emojis [:), ;), :D, :P, etc]
@@ -36,7 +35,7 @@
 		<input type="radio" name="counting" value="0"> Per day
 		<br>
 
-		<button onclick="start()">plot!</button>
+		<button onclick="plot()">plot!</button>
 		<div id="checkbox">
 			<div id="checkbox1"></div>
 			<div id="checkbox2"></div>
