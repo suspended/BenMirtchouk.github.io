@@ -1,17 +1,65 @@
 .messages{
-	width: 90vw !important;
+    width: 90vw !important;
     margin: 0 auto;
     display: none;
 }
 #tohide{
-	display: none;
+    display: none;
 }
 #select{
-	width: 50vw;
+    width: 50vw;
 }
 #checkbox1, #checkbox2{
-	width: 47vw;
+    width: 47vw;
     margin: 0;
     display: inline-block;
     float: left;
+}
+
+.index_box {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: 8px 2px 55px #c1c1c1;
+    padding: 0px 45px 30px 35px;
+}
+
+.input-field {
+    width: 74%;
+    display: inline-block;
+    float: left;
+}
+
+button.btn {
+    display: inline-block;
+    float: right;
+    margin-top: 25px;
+    margin-right: 8px;
+    width: 22%;
+    background-color: #69bd87;
+    margin-bottom: 60px;
+}
+
+.input-field .btn {
+    background: #97e4b2;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-top: 9px;
+}
+
+.index_box p {
+    display: inline-block;
+    margin-top: 60px;
+}
+
+.radio-buttons label {
+    margin-top: 0;
+}
+
+.radio-buttons label {
+    margin-right: 19px;
+}
+
+hr {
+    width: 100%;
+    border-color: #cefdde;
 }

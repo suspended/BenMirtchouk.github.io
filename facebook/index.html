@@ -12,6 +12,10 @@
 	<script src="main.js"></script>
 	<script src="colors.js"></script>
 
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+	<script src= "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
@@ -19,22 +23,40 @@
 	<div id="message_container">
 		<canvas id="messages" class="messages"></canvas>
 	</div>
-	<input type="file"></input>
+	
+	<div class = "index_box">
+	    <div class="file-field input-field">
+	      <div class="btn">
+	        <span>File</span>
+	        <input type="file" multiple>
+	      </div>
+	      <div class="file-path-wrapper">
+	        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+	      </div>
+	    </div>
 
-	<button onclick="upload()">upload</button>
+		<button class = "btn" onclick="upload()">upload</button>
 
-	<br>
+		
+		<div class = "radio-buttons">
+		    <input name="chatcount" type="radio" value="multiple_chats" id="test1" />
+		    <label for="test1">Multiple Chats</label>
 
-	<input type="radio" name="chatcount" value="multiple_chats"> multiple chats
-	<input type="radio" name="chatcount" value="single_chat"> single chat
+		    <input name="chatcount" type="radio" value="single_chat" id="test2" />
+		    <label for="test2">Single Chat</label>
+		    
+		    <hr>
 
-	<br>
+	     	<input name="type" type="radio" value="total_messages" id="test3"  />
+	      	<label for="test3">Messages</label>
 
-	<input type="radio" name="type" value="total_messages"> messages
-	<input type="radio" name="type" value="happy_emojis"> happy emojis [:), ;), :D, :P, etc]
-	<input type="radio" name="type" value="sentiment_analysis"> sentiment analysis
+	      	<input name="type" type="radio" id="test4" value="happy_emojis" />
+	      	<label for="test4">Happy emojis [🙂, 😉, 😃, 😛, etc]</label>
 
-	<br>
+	      	<input name="type" type="radio" id="test5" value="sentiment_analysis"  />
+	      	<label for="test5">Sentiment Analysis</label>
+	    </div>
+    </div>
 
 	<div id="tohide">
 		<input type="radio" name="counting" value="1"> cumulative
