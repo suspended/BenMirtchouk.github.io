@@ -59,11 +59,18 @@
     </div>
 
 	<div id="tohide">
-		<input type="radio" name="counting" value="1"> cumulative
-		<input type="radio" name="counting" value="0"> per day
-		<br><br>
 
-		<button onclick="plot()">plot!</button>
+		<div class = "graph_settings">
+			<input name="counting" type="radio" value="1" id="cumulative"  />
+	      	<label for="cumulative">Cumulative</label>
+
+			<input name="counting" type="radio" value="0" id="perday"  />
+	      	<label for="perday">Per Day</label>
+
+	      	<br>
+
+			<button class = "btn" onclick="plot()">plot!</button>
+		</div>
 		<div id="checkbox">
 			<div id="checkbox1"></div>
 			<div id="checkbox2"></div>

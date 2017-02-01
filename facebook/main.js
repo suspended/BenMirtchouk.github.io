@@ -152,6 +152,7 @@ function set_checkboxes(chats) {
     var chatcount_selection = $('input[name=chatcount]:checked').val();
     if (chatcount_selection == null || chatcount_selection == "multiple_chats") {
       inputElement.type = "checkbox";
+      inputElement.id = "check" + i;
     } else if (chatcount_selection = "single_chat") {
       inputElement.type = "radio";
       inputElement.name = "radio";
@@ -159,18 +160,15 @@ function set_checkboxes(chats) {
 
     inputElement.value = i;
 
-    var spanElement = document.createElement('span');
-    spanElement.innerHTML = chats[0][i] + " - ";
+    var labelElement = document.createElement('label');
+    
+    labelElement.innerHTML = chats[0][i] + " - " + t;
 
-    var spanElement2 = document.createElement('span');
-    spanElement2.innerHTML = t;
+    labelElement.setAttribute("for", "check" + i);
 
     var divElement = document.createElement('div');
     divElement.appendChild(inputElement);
-    divElement.appendChild(spanElement);;
-    divElement.appendChild(spanElement2);
-
-
+    divElement.appendChild(labelElement);
 
     if (len == 2)
       html.firstChild.children[1].children[0].appendChild(divElement);

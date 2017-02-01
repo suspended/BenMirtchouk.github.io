@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+    margin-top: 200px;
+}
 .messages{
     width: 90vw !important;
     margin: 0 auto;
@@ -17,10 +21,15 @@
 }
 
 .index_box {
-    max-width: 100%;
+    width: 100vw;
     margin: 0;
-    box-shadow: 8px 2px 55px #c1c1c1;
+    box-shadow: 8px 2px 55px #f1f1f1;
     padding: 0px 45px 30px 35px;
+    position: fixed;
+    z-index: 9;
+    background: white;
+    top: 0;
+    margin-bottom: 250px;
 }
 
 .input-field {
@@ -62,4 +71,21 @@ button.btn {
 hr {
     width: 100%;
     border-color: #cefdde;
+}
+
+div#checkbox {
+    margin-top: 0;
+}
+
+#tohide .btn {
+    float: none;
+    margin-bottom: 50px;
+}
+
+.graph_settings {
+    text-align: center;
+}
+
+[type="checkbox"]+label {
+    height: auto;
 }
