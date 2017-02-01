@@ -115,7 +115,7 @@ function getChats() {
 
       if (divs[i].children.length != 1) {
         var progress = ((j + 1) / (divs[i].children.length - 1) + i - 1) / (divs.length - 1);
-        console.log(progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
+        console.log("first: ", progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
       }
     }
   }
@@ -181,10 +181,13 @@ function set_checkboxes(chats) {
     else if (len > 2)
       html.firstChild.children[1].children[1].appendChild(divElement);
     // document.getElementById("checkbox2").innerHTML += str;
+    var progress = (i + 1) / chats[0].length;
+    console.log("second: ", progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
   }
   document.getElementById("checkbox").innerHTML = "";
   document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
   document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
+
 }
 
 function total(a) {
