@@ -28,7 +28,7 @@
 	    <div class="file-field input-field">
 	      <div class="btn">
 	        <span>File</span>
-	        <input type="file" multiple>
+	        <input type="file" multiple required>  
 	      </div>
 	      <div class="file-path-wrapper">
 	        <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -39,21 +39,21 @@
 
 		
 		<div class = "radio-buttons">
-		    <input name="chatcount" type="radio" value="multiple_chats" id="test1" />
+		    <input name="chatcount" type="radio" value="multiple_chats" id="test1" required/>
 		    <label for="test1">Multiple Chats</label>
 
-		    <input name="chatcount" type="radio" value="single_chat" id="test2" />
+		    <input name="chatcount" type="radio" value="single_chat" id="test2" required/>
 		    <label for="test2">Single Chat</label>
 		    
 		    <hr>
 
-	     	<input name="type" type="radio" value="total_messages" id="test3"  />
+	     	<input name="type" type="radio" value="total_messages" id="test3"  required/>
 	      	<label for="test3">Messages</label>
 
-	      	<input name="type" type="radio" id="test4" value="happy_emojis" />
+	      	<input name="type" type="radio" id="test4" value="happy_emojis" required/>
 	      	<label for="test4">Happy emojis [🙂, 😉, 😃, 😛, etc]</label>
 
-	      	<input name="type" type="radio" id="test5" value="sentiment_analysis"  />
+	      	<input name="type" type="radio" id="test5" value="sentiment_analysis" required/>
 	      	<label for="test5">Sentiment Analysis</label>
 	    </div>
     </div>
@@ -61,10 +61,10 @@
 	<div id="tohide">
 
 		<div class = "graph_settings">
-			<input name="counting" type="radio" value="1" id="cumulative"  />
+			<input name="counting" type="radio" value="1" id="cumulative" required />
 	      	<label for="cumulative">Cumulative</label>
 
-			<input name="counting" type="radio" value="0" id="perday"  />
+			<input name="counting" type="radio" value="0" id="perday" required />
 	      	<label for="perday">Per Day</label>
 
 	      	<br>

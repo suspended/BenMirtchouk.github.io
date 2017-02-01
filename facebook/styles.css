@@ -15,7 +15,7 @@ body {
 }
 #checkbox1, #checkbox2{
     width: 47vw;
-    margin: 0;
+    margin: 30px 10px 10px 0;
     display: inline-block;
     float: left;
 }

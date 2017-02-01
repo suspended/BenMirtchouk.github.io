@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     $(window).scroll( function() {
       var value = $(this).scrollTop();
-      if ( value > 200 ) {
+      if ( value > 20 ) {
         $(".radio-buttons").css("display", "none");
         $("button.btn").css("margin-bottom", "0");
       }
