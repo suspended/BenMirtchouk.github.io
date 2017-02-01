@@ -112,6 +112,11 @@ function getChats() {
           [i, j]
         ]);
       }
+
+      if (divs[i].children.length != 1) {
+        var progress = ((j + 1) / (divs[i].children.length - 1) + i - 1) / (divs.length - 1);
+        console.log(progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
+      }
     }
   }
 
@@ -161,7 +166,7 @@ function set_checkboxes(chats) {
     inputElement.value = i;
 
     var labelElement = document.createElement('label');
-    
+
     labelElement.innerHTML = chats[0][i] + " - " + t;
 
     labelElement.setAttribute("for", "check" + i);
