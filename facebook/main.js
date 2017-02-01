@@ -1,3 +1,18 @@
+$( document ).ready(function() {
+    $(window).scroll( function() {
+      var value = $(this).scrollTop();
+      if ( value > 200 ) {
+        $(".radio-buttons").css("display", "none");
+        $("button.btn").css("margin-bottom", "0");
+      }
+      else {
+        $("button.btn").css("margin-bottom", "60px");
+        $(".radio-buttons").css("display", "block");
+      }   
+    });
+});
+
+
 function log(a) {
   console.log("%cFacebook main.js:%c ", "background: lightblue; color: green;", "background: none; color: black;", a);
 }
@@ -161,7 +176,7 @@ function set_checkboxes(chats) {
     inputElement.value = i;
 
     var labelElement = document.createElement('label');
-    
+
     labelElement.innerHTML = chats[0][i] + " - " + t;
 
     labelElement.setAttribute("for", "check" + i);
