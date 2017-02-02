@@ -18,6 +18,11 @@ function log(a) {
 
 function upload() {
   reset1();
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'facebook',
+    eventAction: 'upload'
+  });
 
   var chatcounts = document.getElementsByName("chatcount");
   var prev = null;
@@ -245,6 +250,11 @@ function total(a) {
 
 function plot() {
   reset2();
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'facebook',
+    eventAction: 'plot'
+  });
 
   var temp = getData();
 
