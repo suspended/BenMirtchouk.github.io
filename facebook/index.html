@@ -12,9 +12,9 @@
 	<script src="main.js"></script>
 	<script src="colors.js"></script>
 
-	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 
-	<script src= "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -23,53 +23,53 @@
 	<div id="message_container">
 		<canvas id="messages" class="messages"></canvas>
 	</div>
-	
-	<div class = "index_box">
-	    <div class="file-field input-field">
-	      <div class="btn">
-	        <span>File</span>
-	        <input type="file" multiple required>  
-	      </div>
-	      <div class="file-path-wrapper">
-	        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-	      </div>
-	    </div>
 
-		<button class = "btn" onclick="upload()">upload</button>
+	<div class="index_box">
+		<div class="file-field input-field">
+			<div class="btn">
+				<span>File</span>
+				<input type="file" multiple required>
+			</div>
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text" placeholder="Upload one or more files">
+			</div>
+		</div>
 
-		
-		<div class = "radio-buttons">
-		    <input name="chatcount" type="radio" value="multiple_chats" id="test1" required/>
-		    <label for="test1">Multiple Chats</label>
+		<button class="btn" onclick="upload()">upload</button>
 
-		    <input name="chatcount" type="radio" value="single_chat" id="test2" required/>
-		    <label for="test2">Single Chat</label>
-		    
-		    <hr>
 
-	     	<input name="type" type="radio" value="total_messages" id="test3"  required/>
-	      	<label for="test3">Messages</label>
+		<div class="radio-buttons">
+			<input name="chatcount" type="radio" value="multiple_chats" id="test1" required/>
+			<label for="test1">Multiple Chats</label>
 
-	      	<input name="type" type="radio" id="test4" value="happy_emojis" required/>
-	      	<label for="test4">Happy emojis [🙂, 😉, 😃, 😛, etc]</label>
+			<input name="chatcount" type="radio" value="single_chat" id="test2" required/>
+			<label for="test2">Single Chat</label>
 
-	      	<input name="type" type="radio" id="test5" value="sentiment_analysis" required/>
-	      	<label for="test5">Sentiment Analysis</label>
-	    </div>
-    </div>
+			<hr>
+
+			<input name="type" type="radio" value="total_messages" id="test3" required/>
+			<label for="test3">Messages</label>
+
+			<input name="type" type="radio" id="test4" value="happy_emojis" required/>
+			<label for="test4">Happy emojis [🙂, 😉, 😃, 😛, ❤️, etc]</label>
+
+			<input name="type" type="radio" id="test5" value="sentiment_analysis" required/>
+			<label for="test5">Sentiment Analysis</label>
+		</div>
+	</div>
 
 	<div id="tohide">
 
-		<div class = "graph_settings">
+		<div class="graph_settings">
 			<input name="counting" type="radio" value="1" id="cumulative" required />
-	      	<label for="cumulative">Cumulative</label>
+			<label for="cumulative">Cumulative</label>
 
 			<input name="counting" type="radio" value="0" id="perday" required />
-	      	<label for="perday">Per Day</label>
+			<label for="perday">Per Day</label>
 
-	      	<br>
+			<br>
 
-			<button class = "btn" onclick="plot()">plot!</button>
+			<button class="btn" onclick="plot()">plot!</button>
 		</div>
 		<div id="checkbox">
 			<div id="checkbox1"></div>

@@ -194,11 +194,12 @@ function set_checkboxes(chats) {
 
       if (chatcount_selection == "multiple_chats") {
         inputElement.type = "checkbox";
-        inputElement.id = "check" + i;
       } else if (chatcount_selection = "single_chat") {
         inputElement.type = "radio";
         inputElement.name = "radio";
       }
+
+      inputElement.id = "check" + i;
 
       inputElement.value = i;
       inputElement.checked = false;
@@ -353,7 +354,7 @@ function getData() {
             break;
           case "happy_emojis":
             var said = conversation.children[i + 1].innerHTML;
-            var times = (said.match(/[:;][)D]|[(][:;]|:P/g) || []).length;
+            var times = (said.match(/[:;][)D]|[(][:;]|:P|❤️/g) || []).length;
             perday_messages[speaker] += times;
             cumulative_messages[speaker] += times;
             break;
@@ -371,6 +372,9 @@ function getData() {
                   sentiment += AFINN_main[message_words[w]];
               }
             }
+
+            sentiment += (message_text.match(/[:;][)D]|[(][:;]|:P/g) || []).length * 2;
+            sentiment += (message_text.match(/❤️/g) || []).length * 5;
 
             perday_messages[speaker] += sentiment;
             cumulative_messages[speaker] += sentiment;
@@ -485,7 +489,7 @@ function r(array, keys) {
 }
 
 function makeGraph(messages, labels) {
-  console.log(messages);
+  // console.log(messages);
   var graphsData = {
     type: 'line',
     data: {
