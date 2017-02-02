@@ -1,15 +1,14 @@
-$( document ).ready(function() {
-    $(window).scroll( function() {
-      var value = $(this).scrollTop();
-      if ( value > 20 ) {
-        $(".radio-buttons").css("display", "none");
-        $("button.btn").css("margin-bottom", "0");
-      }
-      else {
-        $("button.btn").css("margin-bottom", "60px");
-        $(".radio-buttons").css("display", "block");
-      }   
-    });
+$(document).ready(function() {
+  $(window).scroll(function() {
+    var value = $(this).scrollTop();
+    if (value > 20) {
+      $(".radio-buttons").css("display", "none");
+      $("button.btn").css("margin-bottom", "0");
+    } else {
+      $("button.btn").css("margin-bottom", "60px");
+      $(".radio-buttons").css("display", "block");
+    }
+  });
 });
 
 
@@ -19,6 +18,17 @@ function log(a) {
 
 function upload() {
   reset1();
+
+  var chatcounts = document.getElementsByName("chatcount");
+  var prev = null;
+  for (var i = 0; i < chatcounts.length; i++) {
+    chatcounts[i].onclick = function() {
+      if (this !== prev) {
+        prev = this;
+        set_checkboxes(null);
+      }
+    };
+  }
 
   AFINN_main = getJSON();
   AFINN_negations = getNegations();
@@ -160,49 +170,63 @@ function httpGet(theUrl) {
 }
 
 function set_checkboxes(chats) {
-  html = new DOMParser().parseFromString("<div id='checkbox1'></div><div id='checkbox2'></div>", "text/html");
+  var chatcount_selection = $('input[name=chatcount]:checked').val();
+  if (chatcount_selection == null)
+    chatcount_selection = "multiple_chats";
 
-  for (var i = 0; i < chats[0].length; i++) {
-    var t = total(chats[1][i]);
-    var len = chats[0][i].split(",").length;
+  var chatcount_selection = $('input[name=chatcount]:checked').val();
 
-    // var str = '<input type="checkbox" value="' + i + '">' + chats[0][i] + '\t' + t + '<br>';
-    var inputElement = document.createElement('input');
-
-    var chatcount_selection = $('input[name=chatcount]:checked').val();
-    if (chatcount_selection == null || chatcount_selection == "multiple_chats") {
-      inputElement.type = "checkbox";
-      inputElement.id = "check" + i;
-    } else if (chatcount_selection = "single_chat") {
-      inputElement.type = "radio";
-      inputElement.name = "radio";
+  if (chats === null) {
+    var html = $('#checkbox').children().children().children("input");
+    for (var i = 0; i < html.length; i++) {
+      html[i].type = chatcount_selection == "single_chat" ? "radio" : "checkbox";
+      html[i].name = chatcount_selection == "single_chat" ? "radio" : "checkbox";
+      html[i].checked = false;
     }
+  } else {
 
-    inputElement.value = i;
+    var html = new DOMParser().parseFromString("<div id='checkbox1'></div><div id='checkbox2'></div>", "text/html");
 
-    var labelElement = document.createElement('label');
+    for (var i = 0; i < chats[0].length; i++) {
+      var t = total(chats[1][i]);
+      var len = chats[0][i].split(",").length;
 
-    labelElement.innerHTML = chats[0][i] + " - " + t;
+      // var str = '<input type="checkbox" value="' + i + '">' + chats[0][i] + '\t' + t + '<br>';
+      var inputElement = document.createElement('input');
 
-    labelElement.setAttribute("for", "check" + i);
+      if (chatcount_selection == "multiple_chats") {
+        inputElement.type = "checkbox";
+        inputElement.id = "check" + i;
+      } else if (chatcount_selection = "single_chat") {
+        inputElement.type = "radio";
+        inputElement.name = "radio";
+      }
 
-    var divElement = document.createElement('div');
-    divElement.appendChild(inputElement);
-    divElement.appendChild(labelElement);
+      inputElement.value = i;
 
-    if (len == 2)
-      html.firstChild.children[1].children[0].appendChild(divElement);
-    // document.getElementById("checkbox1").innerHTML += str;
-    else if (len > 2)
-      html.firstChild.children[1].children[1].appendChild(divElement);
-    // document.getElementById("checkbox2").innerHTML += str;
-    var progress = (i + 1) / chats[0].length;
-    console.log("second: ", progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
+      var labelElement = document.createElement('label');
+
+      labelElement.innerHTML = chats[0][i] + " - " + t;
+
+      labelElement.setAttribute("for", "check" + i);
+
+      var divElement = document.createElement('div');
+      divElement.appendChild(inputElement);
+      divElement.appendChild(labelElement);
+
+      if (len == 2)
+        html.firstChild.children[1].children[0].appendChild(divElement);
+      // document.getElementById("checkbox1").innerHTML += str;
+      else if (len > 2)
+        html.firstChild.children[1].children[1].appendChild(divElement);
+      // document.getElementById("checkbox2").innerHTML += str;
+      var progress = (i + 1) / chats[0].length;
+      console.log("second: ", progress > 1 ? "100%" : Math.round(progress * 1000) / 10 + "%");
+    }
+    document.getElementById("checkbox").innerHTML = "";
+    document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
+    document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
   }
-  document.getElementById("checkbox").innerHTML = "";
-  document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
-  document.getElementById("checkbox").appendChild(html.firstChild.children[1].children[0]);
-
 }
 
 function total(a) {
