@@ -174,8 +174,6 @@ function set_checkboxes(chats) {
   if (chatcount_selection == null)
     chatcount_selection = "multiple_chats";
 
-  var chatcount_selection = $('input[name=chatcount]:checked').val();
-
   if (chats === null) {
     var html = $('#checkbox').children().children().children("input");
     for (var i = 0; i < html.length; i++) {
@@ -203,6 +201,7 @@ function set_checkboxes(chats) {
       }
 
       inputElement.value = i;
+      inputElement.checked = false;
 
       var labelElement = document.createElement('label');
 

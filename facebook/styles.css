@@ -90,6 +90,10 @@ div#checkbox {
     height: auto;
 }
 
+[type="radio"]+label {
+    height: auto !important;
+}
+
 .radio-buttons {
     transition: 1s ease-in-out;
 }
