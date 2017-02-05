@@ -3,7 +3,8 @@ body {
     margin-top: 200px;
 }
 .messages{
-    width: 90vw !important;
+    width: 75vw !important;
+    height: 40.94vw !important;
     margin: 0 auto;
     display: none;
 }
