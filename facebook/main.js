@@ -337,7 +337,7 @@ function getData() {
       var convoLen = conversation.children.length;
       for (var i = convoLen - 2; i >= 0; i -= 2) {
         var speaker = conversation.children[i].firstChild.firstChild.innerHTML;
-        speaker = name_lookups[speaker];
+        speaker = name_lookups[speaker] == null ? speaker : name_lookups[speaker];
 
         var message_time = conversation.children[i].firstChild.children[1].innerHTML;
         message_time = message_time.substr(message_time.indexOf(',') + 2, message_time.indexOf(' at ') - message_time.indexOf(',') - 2);
